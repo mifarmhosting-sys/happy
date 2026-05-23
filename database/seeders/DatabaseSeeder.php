@@ -1,0 +1,390 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\User;
+use App\Models\SiteSetting;
+use App\Models\HeroSection;
+use App\Models\WelcomeSection;
+use App\Models\AboutSection;
+use App\Models\Destination;
+use App\Models\HotelCategory;
+use App\Models\Hotel;
+use App\Models\Testimonial;
+use App\Models\Benefit;
+use App\Models\Award;
+use App\Models\Stat;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+
+class DatabaseSeeder extends Seeder
+{
+    public function run(): void
+    {
+        // 1. Create Default Admin User
+        User::create([
+            'name' => 'PTC Administrator',
+            'email' => 'admin@premiumtravel.club',
+            'password' => Hash::make('adminpassword'),
+        ]);
+
+        // 2. Seed Site Settings
+        SiteSetting::create([
+            'site_name' => 'Premium Travel Club',
+            'contact_email' => 'info@yourdomain.com',
+            'contact_phone' => '+91 98765 43210',
+            'contact_address' => 'AVS House, 42/1A Gurupada Halder Road. Kolkata - 700026',
+            'working_hours' => 'Mon - Sat: 10:00 AM - 7:00 PM',
+            'facebook_url' => '#',
+            'instagram_url' => '#',
+            'youtube_url' => '#',
+            'logo_path' => 'images/Premium.png',
+            'footer_logo_path' => 'images/Premium.png',
+            'footer_blurb' => 'Division of The Happy Miles Tourism. Luxury resorts across the Caribbean, the Canary Islands, and Spain.',
+        ]);
+
+        // 3. Seed Hero Section
+        HeroSection::create([
+            'eyebrow' => 'Signature Travel Experience',
+            'title' => 'Discover the Art of Resort Living',
+            'subtitle' => 'Resort Life Awaits',
+            'video_path' => 'images/video.mp4',
+            'image_fallback_path' => 'images/HomeVideoBG.jpg',
+        ]);
+
+        // 4. Seed Welcome Section
+        WelcomeSection::create([
+            'tagline' => 'Happy Miles',
+            'title' => 'Dream Hospitality',
+            'description1' => 'Happy Miles Dream Hospitality is more than just a tour & travel company—we create experiences that go beyond ordinary journeys. We turn your dream vacations into reality with the perfect blend of comfort, luxury, and relaxation, ensuring every moment is truly special.',
+            'description2' => 'From customized tours and dream holidays to personal events, day outings, candle light dinners, wellness services, and personal grooming—we offer complete hospitality solutions under one roof. Our focus is on delivering personalized, high-quality services that match your expectations and lifestyle.',
+            'accent_text' => 'Where every miles begins with a hapy smile!',
+            'image1_path' => 'images/WelcomeImg-1.jpg',
+            'image2_path' => 'images/WelcomeImg-2.jpg',
+            'image3_path' => 'images/WelcomeImg-3.jpg',
+            'image4_path' => 'images/WelcomeImg-4.jpg',
+        ]);
+
+        // 5. Seed About Section
+        AboutSection::create([
+            'title' => 'Premium Travel Club',
+            'subtitle' => 'ABOUT US',
+            'description1' => 'Premium Travel Club offers a selection of 8 destinations and 19 hotels where you can enjoy exceptional seafront locations. Our hotels offer up-to-date facilities, carefully selected cuisine and services designed to cater to your every need.',
+            'description2' => 'Since 2007, we’ve been working to guarantee the highest quality standards. Around 16,000 members are already enjoying all the benefits of our vacation program.',
+            'description3' => 'At Premium Travel Club, we always have our clients in mind and are focused on making their vacation the best that it can be.',
+            
+            'amenities_title' => 'Privilege amenities',
+            'amenities_description' => 'We offer our members rooms with Privilege amenities equipped with everything you will need for a relaxing and unforgettable holiday such as a fully stocked mini bar, room service, bath robes and slippers for your stay, butler service and much more.',
+            'amenities_image_path' => 'images/About-1.jpg',
+            
+            'offers_title' => 'Special Offers',
+            'offers_description' => 'Who doesn’t like an extra discount? We want you to get the best deal so make sure to login and check out all the active promotions available at our affiliated resorts and start planning your next getaway!',
+            'offers_image_path' => 'images/About-2.jpg',
+            
+            'about_image1_path' => 'images/WelcomeImg-1.jpg',
+            'about_image2_path' => 'images/WelcomeImg-2.jpg',
+        ]);
+
+        // 6. Seed Destinations
+        $destinations = [
+            ['name' => 'Kashmir', 'image_path' => 'images/H-Kashmir.jpg', 'sort_order' => 1],
+            ['name' => 'Arunachal', 'image_path' => 'images/H-Arunachal.jpg', 'sort_order' => 2],
+            ['name' => 'Kerala', 'image_path' => 'images/H-Kerala.jpg', 'sort_order' => 3],
+            ['name' => 'Goa', 'image_path' => 'images/H-Goa.jpg', 'sort_order' => 4],
+        ];
+        foreach ($destinations as $d) {
+            Destination::create($d);
+        }
+
+        // 7. Seed Hotel Categories
+        $cats = [
+            ['name' => 'All Hotels', 'slug' => 'all'],
+            ['name' => 'Adults Only', 'slug' => 'adults'],
+            ['name' => 'Despacio Spa Center', 'slug' => 'spa'],
+            ['name' => 'Wedding', 'slug' => 'wedding'],
+        ];
+        $categoryModels = [];
+        foreach ($cats as $c) {
+            $categoryModels[$c['slug']] = HotelCategory::create($c);
+        }
+
+        // 8. Seed Hotels and Associate with Categories
+        // Tab-filtered hotels (from home page JS)
+        $tabHotels = [
+            [
+                'name' => 'Ocean Eden Bay', 'rating' => 5, 'location' => 'Montego Bay | Jamaica', 'country' => 'Jamaica',
+                'description' => 'Beachfront luxury with curated dining and family-friendly pools.', 'image_path' => 'images/profile1.jpg',
+                'categories' => ['all', 'wedding']
+            ],
+            [
+                'name' => 'Ocean Coral & Turquesa', 'rating' => 5, 'location' => 'Riviera Maya | Mexico', 'country' => 'Mexico',
+                'description' => 'Spacious suites, vibrant experiences nearby, and endless ocean views.', 'image_path' => 'images/profile2.jpg',
+                'categories' => ['all']
+            ],
+            [
+                'name' => 'Ocean Maya Royale', 'rating' => 5, 'location' => 'Playa del Carmen | Mexico', 'country' => 'Mexico',
+                'description' => 'Refined atmosphere with quiet pools and attentive concierge service.', 'image_path' => 'images/profile3.jpg',
+                'categories' => ['all']
+            ],
+            [
+                'name' => 'Azure Cove Retreat', 'rating' => 5, 'location' => 'Punta Cana | Dominican Republic', 'country' => 'Dominican Republic',
+                'description' => 'Adults-only serenity, rooftop lounges, and spa rituals at sunset.', 'image_path' => 'images/profile2.jpg',
+                'categories' => ['adults']
+            ],
+            [
+                'name' => 'Velvet Shore', 'rating' => 4, 'location' => 'Tenerife | Spain', 'country' => 'Spain',
+                'description' => 'Cliffside suites, infinity pools, and curated wine evenings.', 'image_path' => 'images/profile3.jpg',
+                'categories' => ['adults']
+            ],
+            [
+                'name' => 'Luna Bay Club', 'rating' => 5, 'location' => 'Montego Bay | Jamaica', 'country' => 'Jamaica',
+                'description' => 'Quiet beaches, private cabanas, and chef-led tasting menus.', 'image_path' => 'images/profile1.jpg',
+                'categories' => ['adults']
+            ],
+            [
+                'name' => 'Despacio Spa Haven', 'rating' => 5, 'location' => 'Riviera Maya | Mexico', 'country' => 'Mexico',
+                'description' => 'Thermal circuits, hydrotherapy, and bespoke wellness journeys.', 'image_path' => 'images/profile3.jpg',
+                'categories' => ['spa']
+            ],
+            [
+                'name' => 'Garden Springs', 'rating' => 5, 'location' => 'Gran Canaria | Spain', 'country' => 'Spain',
+                'description' => 'Outdoor treatment suites nestled in tropical gardens.', 'image_path' => 'images/profile1.jpg',
+                'categories' => ['spa']
+            ],
+            [
+                'name' => 'Tide & Stone Spa', 'rating' => 4, 'location' => 'Punta Cana | Dominican Republic', 'country' => 'Dominican Republic',
+                'description' => 'Mindful movement studios and marine-inspired therapies.', 'image_path' => 'images/profile2.jpg',
+                'categories' => ['spa']
+            ],
+            [
+                'name' => 'Ceremony Bay Resort', 'rating' => 5, 'location' => 'Montego Bay | Jamaica', 'country' => 'Jamaica',
+                'description' => 'Oceanfront vows, ballroom receptions, and dedicated planners.', 'image_path' => 'images/profile1.jpg',
+                'categories' => ['wedding']
+            ],
+            [
+                'name' => 'Palm Court Estates', 'rating' => 5, 'location' => 'Riviera Maya | Mexico', 'country' => 'Mexico',
+                'description' => 'Garden gazebos, live music terraces, and guest room blocks.', 'image_path' => 'images/profile2.jpg',
+                'categories' => ['wedding']
+            ],
+            [
+                'name' => 'Sunset Pier Hotel', 'rating' => 5, 'location' => 'Tenerife | Spain', 'country' => 'Spain',
+                'description' => 'Cliff-top chapels and sunset photo sessions over the Atlantic.', 'image_path' => 'images/profile3.jpg',
+                'categories' => ['wedding']
+            ],
+        ];
+
+        // Specific properties page hotels (from our-hotels.html)
+        $propHotels = [
+            [
+                'name' => 'Ocean Coral Spring', 'rating' => 5, 'location' => 'Montego bay | Jamaica', 'country' => 'Jamaica',
+                'description' => 'The Ocean Coral Spring is a newly built five-star resort. Located on the seafront at Coral Spring with access to a spectacular beach...', 'image_path' => 'images/jamaica2.jpg',
+                'categories' => ['all']
+            ],
+            [
+                'name' => 'Ocean Riviera Paradise', 'rating' => 5, 'location' => 'Riviera Maya | Mexico', 'country' => 'Mexico',
+                'description' => 'The Ocean Riviera Paradise is a newly-built five-star resort located on the Riviera Maya seafront...', 'image_path' => 'images/profile.jpg',
+                'categories' => ['all']
+            ],
+            [
+                'name' => 'H10 Conquistador', 'rating' => 4, 'location' => 'Tenerife | Spain', 'country' => 'Spain',
+                'description' => 'Facing the sea in Playa de las Américas, with direct access to the seafront promenade...', 'image_path' => 'images/spain1.jpg',
+                'categories' => ['all']
+            ],
+            [
+                'name' => 'H10 Las Palmeras', 'rating' => 4, 'location' => 'Tenerife | Spain', 'country' => 'Spain',
+                'description' => 'Located in the heart of Playa de las Américas and with direct access to the seafront promenade...', 'image_path' => 'images/spain2.jpg',
+                'categories' => ['all']
+            ],
+            [
+                'name' => 'H10 Costa Adeje Palace', 'rating' => 4, 'location' => 'Tenerife | Spain', 'country' => 'Spain',
+                'description' => 'Located on the seafront with direct access to La Enramada beach...', 'image_path' => 'images/spain3.jpg',
+                'categories' => ['all']
+            ]
+        ];
+
+        // Seed all hotels
+        $allHotels = array_merge($tabHotels, $propHotels);
+        $hotelIdsSeeded = [];
+
+        foreach ($allHotels as $hData) {
+            // Check if hotel already seeded to avoid duplicates
+            if (in_array($hData['name'], $hotelIdsSeeded)) {
+                continue;
+            }
+            $categories = $hData['categories'];
+            unset($hData['categories']);
+            
+            $h = Hotel::create($hData);
+            $hotelIdsSeeded[] = $h->name;
+            
+            // Attach categories
+            foreach ($categories as $catSlug) {
+                if (isset($categoryModels[$catSlug])) {
+                    $h->categories()->attach($categoryModels[$catSlug]->id);
+                }
+            }
+        }
+
+        // 9. Seed Testimonials
+        $testimonials = [
+            // Home Slide Testimonials
+            [
+                'quote' => '“A very professional and experienced team. Well-mannered service. My Kerala tour was well managed. Mr. Arunava Roy is truly a gentleman.”',
+                'author' => 'Debjit Chatterjee',
+                'role' => 'Members since 2022',
+                'avatar_path' => 'images/testimonial-01.jpg',
+                'type' => 'home',
+                'sort_order' => 1
+            ],
+            [
+                'quote' => '“I traveled to Darjeeling & Kalimpong with Dream Hospitality. The arrangements were very good. My daughter enjoyed a lot. Thank you Mr. Arunava Roy.”',
+                'author' => 'Prithviraj Dasgupta',
+                'role' => 'Members since 2023',
+                'avatar_path' => 'images/testimonial-02.jpg',
+                'type' => 'home',
+                'sort_order' => 2
+            ],
+            [
+                'quote' => '“Very trustworthy and highly recommended. My Kashmir tour was well managed and properly coordinated. Mrs. Reshmi Biswas kept all her promises.”',
+                'author' => 'Ashish Mishra',
+                'role' => 'Member since 2020',
+                'avatar_path' => 'images/testimonial-03.jpg',
+                'type' => 'home',
+                'sort_order' => 3
+            ],
+            // About Slide Testimonials
+            [
+                'quote' => 'Our favourite hotel is the Ocean El Faro...',
+                'author' => 'Guest review',
+                'role' => 'Member',
+                'avatar_path' => 'images/Testimonio1.jpg',
+                'type' => 'about',
+                'sort_order' => 1
+            ],
+            [
+                'quote' => 'All the staff at Ocean El Faro treats us very well...',
+                'author' => 'Guest review',
+                'role' => 'Member',
+                'avatar_path' => 'images/Testimonio2.jpg',
+                'type' => 'about',
+                'sort_order' => 2
+            ],
+            [
+                'quote' => 'We joined the Premium family in 2021...',
+                'author' => 'Guest review',
+                'role' => 'Member',
+                'avatar_path' => 'images/Testimonio4.jpg',
+                'type' => 'about',
+                'sort_order' => 3
+            ],
+            [
+                'quote' => 'We have been members for 10 years...',
+                'author' => 'Guest review',
+                'role' => 'Member',
+                'avatar_path' => 'images/Testimonio5.jpg',
+                'type' => 'about',
+                'sort_order' => 4
+            ]
+        ];
+        foreach ($testimonials as $t) {
+            Testimonial::create($t);
+        }
+
+        // 10. Seed Benefits
+        $benefits = [
+            [
+                'title' => 'Variety',
+                'description' => 'You\'re not tied to the same destination every year...',
+                'icon_path' => 'images/map-marked-blue.svg',
+                'sort_order' => 1
+            ],
+            [
+                'title' => 'Flexibility',
+                'description' => 'Choose when and where you want to go...',
+                'icon_path' => 'images/calendar-blue.svg',
+                'sort_order' => 2
+            ],
+            [
+                'title' => 'Automatic Subscription to RCI',
+                'description' => 'Enjoy more than 4,300 affiliate hotels in over 100 countries...',
+                'icon_path' => 'images/RCI-blue-new.svg',
+                'sort_order' => 3
+            ],
+            [
+                'title' => 'Best Price',
+                'description' => 'We guarantee the best market rate for our affiliated hotels...',
+                'icon_path' => 'images/dollar-sign-blue.svg',
+                'sort_order' => 4
+            ],
+            [
+                'title' => 'Club H10 Grand Class',
+                'description' => 'Exclusive benefits in more than 66 hotels worldwide...',
+                'icon_path' => 'images/clubh10-blue.svg',
+                'sort_order' => 5
+            ],
+            [
+                'title' => 'Customer Service',
+                'description' => 'Our team is always on hand to help plan your vacation...',
+                'icon_path' => 'images/headphones-blue.svg',
+                'sort_order' => 6
+            ]
+        ];
+        foreach ($benefits as $b) {
+            Benefit::create($b);
+        }
+
+        // 11. Seed Awards
+        $awards = [
+            [
+                'title' => 'Best Travel Experience 2025',
+                'description' => 'Recognized for delivering exceptional curated travel journeys.',
+                'icon_class' => 'fas fa-trophy',
+                'sort_order' => 1
+            ],
+            [
+                'title' => 'Global Hospitality Excellence',
+                'description' => 'Awarded for outstanding global service and customer satisfaction.',
+                'icon_class' => 'fas fa-globe',
+                'sort_order' => 2
+            ],
+            [
+                'title' => '5-Star Client Satisfaction',
+                'description' => 'Consistently rated top-tier by travelers worldwide.',
+                'icon_class' => 'fas fa-star',
+                'sort_order' => 3
+            ],
+            [
+                'title' => 'Luxury Travel Innovator',
+                'description' => 'Leading innovation in premium travel experiences.',
+                'icon_class' => 'fas fa-plane-departure',
+                'sort_order' => 4
+            ],
+            [
+                'title' => 'Top Emerging Brand',
+                'description' => 'Recognized as a fast-growing hospitality brand.',
+                'icon_class' => 'fas fa-medal',
+                'sort_order' => 5
+            ],
+            [
+                'title' => 'Trusted Travel Partner',
+                'description' => 'Building long-term relationships with global clients.',
+                'icon_class' => 'fas fa-handshake',
+                'sort_order' => 6
+            ]
+        ];
+        foreach ($awards as $a) {
+            Award::create($a);
+        }
+
+        // 12. Seed Stats
+        $stats = [
+            ['value' => '50K+', 'label' => 'Happy Travelers', 'sort_order' => 1],
+            ['value' => '25+', 'label' => 'Global Destinations', 'sort_order' => 2],
+            ['value' => '10+', 'label' => 'Awards Won', 'sort_order' => 3],
+            ['value' => '5★', 'label' => 'Average Rating', 'sort_order' => 4],
+        ];
+        foreach ($stats as $s) {
+            Stat::create($s);
+        }
+    }
+}

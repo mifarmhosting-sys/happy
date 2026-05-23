@@ -1,0 +1,81 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminHotelController;
+use App\Http\Controllers\AdminContentController;
+
+// Public Frontend Routes
+Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/home', [HomeController::class, 'home']);
+Route::get('/our-hotels.html', [HomeController::class, 'hotels'])->name('hotels');
+Route::get('/benefits.html', [HomeController::class, 'benefits'])->name('benefits');
+Route::get('/awards.html', [HomeController::class, 'awards'])->name('awards');
+Route::get('/about.html', [HomeController::class, 'about'])->name('about');
+Route::get('/contact-us.html', [HomeController::class, 'contact'])->name('contact');
+Route::post('/contact-us.html', [HomeController::class, 'contactSubmit'])->name('contact.submit');
+
+// Legacy routing compatibility support
+Route::get('/home.html', [HomeController::class, 'home']);
+
+// Admin Authentication Routes
+Route::get('/admin/login', [AdminController::class, 'showLogin'])->name('admin.login');
+Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.submit');
+Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+
+// Secure CMS Dashboard Area
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    
+    // Core Dashboard & Messages
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/messages/{id}', [AdminController::class, 'viewMessage'])->name('admin.messages.view');
+    Route::delete('/messages/{id}', [AdminController::class, 'deleteMessage'])->name('admin.messages.delete');
+    
+    // Section Contents
+    Route::get('/settings', [AdminController::class, 'editSettings'])->name('admin.settings');
+    Route::post('/settings', [AdminController::class, 'updateSettings'])->name('admin.settings.update');
+    
+    Route::get('/homepage', [AdminController::class, 'editHomepage'])->name('admin.homepage');
+    Route::post('/homepage', [AdminController::class, 'updateHomepage'])->name('admin.homepage.update');
+    
+    Route::get('/about', [AdminController::class, 'editAbout'])->name('admin.about');
+    Route::post('/about', [AdminController::class, 'updateAbout'])->name('admin.about.update');
+
+    // Hotels CRUD
+    Route::resource('hotels', AdminHotelController::class, ['names' => 'admin.hotels']);
+
+    // Destinations Management
+    Route::get('/destinations', [AdminContentController::class, 'destinationsIndex'])->name('admin.destinations.index');
+    Route::post('/destinations', [AdminContentController::class, 'destinationStore'])->name('admin.destinations.store');
+    Route::get('/destinations/{id}/edit', [AdminContentController::class, 'destinationEdit'])->name('admin.destinations.edit');
+    Route::put('/destinations/{id}', [AdminContentController::class, 'destinationUpdate'])->name('admin.destinations.update');
+    Route::delete('/destinations/{id}', [AdminContentController::class, 'destinationDestroy'])->name('admin.destinations.destroy');
+
+    // Testimonials Management
+    Route::get('/testimonials', [AdminContentController::class, 'testimonialsIndex'])->name('admin.testimonials.index');
+    Route::post('/testimonials', [AdminContentController::class, 'testimonialStore'])->name('admin.testimonials.store');
+    Route::get('/testimonials/{id}/edit', [AdminContentController::class, 'testimonialEdit'])->name('admin.testimonials.edit');
+    Route::put('/testimonials/{id}', [AdminContentController::class, 'testimonialUpdate'])->name('admin.testimonials.update');
+    Route::delete('/testimonials/{id}', [AdminContentController::class, 'testimonialDestroy'])->name('admin.testimonials.destroy');
+
+    // Benefits Management
+    Route::get('/benefits', [AdminContentController::class, 'benefitsIndex'])->name('admin.benefits.index');
+    Route::post('/benefits', [AdminContentController::class, 'benefitStore'])->name('admin.benefits.store');
+    Route::get('/benefits/{id}/edit', [AdminContentController::class, 'benefitEdit'])->name('admin.benefits.edit');
+    Route::put('/benefits/{id}', [AdminContentController::class, 'benefitUpdate'])->name('admin.benefits.update');
+    Route::delete('/benefits/{id}', [AdminContentController::class, 'benefitDestroy'])->name('admin.benefits.destroy');
+
+    // Awards & Achievements Management
+    Route::get('/awards', [AdminContentController::class, 'awardsIndex'])->name('admin.awards.index');
+    Route::post('/awards', [AdminContentController::class, 'awardStore'])->name('admin.awards.store');
+    Route::get('/awards/{id}/edit', [AdminContentController::class, 'awardEdit'])->name('admin.awards.edit');
+    Route::put('/awards/{id}', [AdminContentController::class, 'awardUpdate'])->name('admin.awards.update');
+    Route::delete('/awards/{id}', [AdminContentController::class, 'awardDestroy'])->name('admin.awards.destroy');
+
+    // Metric Stats Management
+    Route::post('/stats', [AdminContentController::class, 'statStore'])->name('admin.stats.store');
+    Route::get('/stats/{id}/edit', [AdminContentController::class, 'statEdit'])->name('admin.stats.edit');
+    Route::put('/stats/{id}', [AdminContentController::class, 'statUpdate'])->name('admin.stats.update');
+    Route::delete('/stats/{id}', [AdminContentController::class, 'statDestroy'])->name('admin.stats.destroy');
+});
