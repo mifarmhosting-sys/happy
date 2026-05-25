@@ -451,6 +451,9 @@
       <a href="{{ route('admin.awards.index') }}" class="sidebar-link {{ Request::routeIs('admin.awards.*') || Request::routeIs('admin.stats.*') ? 'active' : '' }}">
         <i class="fas fa-trophy"></i> Awards & Stats
       </a>
+      <a href="{{ route('admin.members.index') }}" class="sidebar-link {{ Request::routeIs('admin.members.*') ? 'active' : '' }}">
+        <i class="fas fa-users"></i> Registered Members
+      </a>
       <a href="{{ route('home') }}" target="_blank" class="sidebar-link">
         <i class="fas fa-external-link-alt"></i> Visit Site
       </a>

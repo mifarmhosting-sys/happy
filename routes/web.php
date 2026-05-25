@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminHotelController;
 use App\Http\Controllers\AdminContentController;
+use App\Http\Controllers\AdminMemberController;
 
 // Public Frontend Routes
 Route::get('/', [HomeController::class, 'home'])->name('home');
@@ -78,4 +79,25 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/stats/{id}/edit', [AdminContentController::class, 'statEdit'])->name('admin.stats.edit');
     Route::put('/stats/{id}', [AdminContentController::class, 'statUpdate'])->name('admin.stats.update');
     Route::delete('/stats/{id}', [AdminContentController::class, 'statDestroy'])->name('admin.stats.destroy');
+
+    // Member Management
+    Route::resource('members', AdminMemberController::class, ['names' => 'admin.members']);
+});
+
+// Member Routing Groups
+use App\Http\Controllers\MemberAuthController;
+use App\Http\Controllers\MemberBookingController;
+
+Route::prefix('member')->group(function () {
+    Route::get('/login', [MemberAuthController::class, 'showLogin'])->name('member.login');
+    Route::post('/login', [MemberAuthController::class, 'login'])->name('member.login.submit');
+    Route::get('/register', [MemberAuthController::class, 'showRegister'])->name('member.register');
+    Route::post('/register', [MemberAuthController::class, 'register'])->name('member.register.submit');
+
+    Route::middleware(['auth:member'])->group(function () {
+        Route::post('/logout', [MemberAuthController::class, 'logout'])->name('member.logout');
+        Route::get('/profile', [MemberBookingController::class, 'profile'])->name('member.profile');
+        Route::get('/booking', [MemberBookingController::class, 'showBookingForm'])->name('member.booking');
+        Route::post('/booking', [MemberBookingController::class, 'storeBooking'])->name('member.booking.submit');
+    });
 });

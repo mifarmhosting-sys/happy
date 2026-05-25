@@ -386,5 +386,28 @@ class DatabaseSeeder extends Seeder
         foreach ($stats as $s) {
             Stat::create($s);
         }
+
+        // 13. Seed Default Member
+        \App\Models\Member::create([
+            'customer_id' => 'PTC-1001',
+            'password' => Hash::make('memberpassword'),
+            'customer_name' => 'Tanmoy Saha',
+            'age' => 32,
+            'co_customer_name' => 'Priya Saha',
+            'co_customer_age' => 28,
+            'kid_1_name' => 'Rohan Saha',
+            'kid_1_age' => 6,
+            'kid_2_name' => 'Riya Saha',
+            'kid_2_age' => 3,
+            'address' => '123 Dream Valley, Salt Lake, Kolkata, West Bengal - 700091',
+            'mobile_1' => '+91 98300 12345',
+            'mobile_2' => '+91 98300 54321',
+            'email' => 'member@premiumtravel.club',
+            'membership_issue_date' => '2026-01-15',
+            'membership_expiry_date' => '2031-01-15',
+            'membership_category' => 'Platinum Club Elite',
+            'membership_terms' => 'Includes access to 19 premium seafront hotels across Europe and the Caribbean. Valid for up to 21 nights of stay annually. Standard resort rules apply.',
+            'profile_image_path' => 'images/profile.jpg',
+        ]);
     }
 }

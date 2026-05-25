@@ -21,7 +21,15 @@
         </p>
         <div class="top-bar__actions">
           <button type="button" class="top-bar__link" aria-expanded="false" aria-haspopup="true">Language</button>
-          <a href="{{ route('admin.login') }}" class="top-bar__link top-bar__link--member">Member Login</a>
+          @if(auth('member')->check())
+            <a href="{{ route('member.profile') }}" class="top-bar__link" style="margin-right: 12px;"><i class="fa fa-user" style="margin-right: 5px;"></i>My Profile</a>
+            <form action="{{ route('member.logout') }}" method="POST" style="display: inline;">
+              @csrf
+              <button type="submit" class="top-bar__link" style="background: none; border: none; cursor: pointer; padding: 0;"><i class="fa fa-sign-out-alt" style="margin-right: 5px;"></i>Logout</button>
+            </form>
+          @else
+            <a href="{{ route('member.login') }}" class="top-bar__link top-bar__link--member"><i class="fa fa-lock" style="margin-right: 5px;"></i>Member Login</a>
+          @endif
         </div>
       </div>
     </div>
