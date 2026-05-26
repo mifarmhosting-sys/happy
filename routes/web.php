@@ -101,3 +101,15 @@ Route::prefix('member')->group(function () {
         Route::post('/booking', [MemberBookingController::class, 'storeBooking'])->name('member.booking.submit');
     });
 });
+
+// Deployment helper route to run migrations and seed database without SSH
+Route::get('/run-migrations', function() {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        \Illuminate\Support\Facades\Artisan::call('db:seed', ['--force' => true]);
+        return 'Migrations and Seeding completed successfully!';
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});
+
