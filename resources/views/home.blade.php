@@ -133,7 +133,7 @@
     </section>
 
     <!-- Destinations: card grid -->
-    <section class="destinations section section--reveal" aria-labelledby="destinations-title">
+    <section class="destinations section section--reveal" id="destinations" aria-labelledby="destinations-title">
       <div class="container">
         <header class="destinations__header">
           <p class="destinations__eyebrow">Find Your Escape in Our</p>

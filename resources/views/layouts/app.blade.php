@@ -6,6 +6,7 @@
   <meta name="description" content="{{ $settings->footer_blurb }}">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title', $settings->site_name . ' | Discover the Art of Resort Living')</title>
+  <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
   <link rel="stylesheet" href="{{ asset('css/master.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   @yield('styles')
@@ -17,10 +18,9 @@
     <div class="top-bar">
       <div class="container top-bar__inner">
         <p class="top-bar__contact">
-          <span class="top-bar__label">{{ $settings->site_name }}</span>
+          <span class="top-bar__label">Happy Miles Club</span>
         </p>
         <div class="top-bar__actions">
-          <button type="button" class="top-bar__link" aria-expanded="false" aria-haspopup="true">Language</button>
           @if(auth('member')->check())
             <a href="{{ route('member.profile') }}" class="top-bar__link" style="margin-right: 12px;"><i class="fa fa-user" style="margin-right: 5px;"></i>My Profile</a>
             <form action="{{ route('member.logout') }}" method="POST" style="display: inline;">
@@ -51,9 +51,9 @@
             <li><a href="{{ route('home') }}" class="main-nav__link {{ Request::routeIs('home') ? 'main-nav__link--active' : '' }}">Home</a></li>
             <li><a href="{{ route('hotels') }}" class="main-nav__link {{ Request::routeIs('hotels') ? 'main-nav__link--active' : '' }}">Properties</a></li>
             <li><a href="{{ route('benefits') }}" class="main-nav__link {{ Request::routeIs('benefits') ? 'main-nav__link--active' : '' }}">Verticals</a></li>
-            <li><a href="{{ route('awards') }}" class="main-nav__link {{ Request::routeIs('awards') ? 'main-nav__link--active' : '' }}">Destination</a></li>
-            <li><a href="{{ route('awards') }}" class="main-nav__link {{ Request::routeIs('awards') ? 'main-nav__link--active' : '' }}">Packages</a></li>
-            <li><a href="{{ route('about') }}" class="main-nav__link {{ Request::routeIs('about') ? 'main-nav__link--active' : '' }}">Blog</a></li>
+            <li><a href="{{ route('destinations') }}" class="main-nav__link {{ Request::routeIs('destinations') ? 'main-nav__link--active' : '' }}">Destination</a></li>
+            <li><a href="{{ route('awards') }}" class="main-nav__link {{ Request::routeIs('awards') ? 'main-nav__link--active' : '' }}">Awards</a></li>
+            <li><a href="{{ route('blog.index') }}" class="main-nav__link {{ Request::routeIs('blog.*') ? 'main-nav__link--active' : '' }}">Blog</a></li>
             <li><a href="{{ route('contact') }}" class="main-nav__link {{ Request::routeIs('contact') ? 'main-nav__link--active' : '' }}">Connect Us</a></li>
           </ul>
         </nav>
@@ -77,8 +77,8 @@
         <h3 class="site-footer__heading">Explore</h3>
         <ul class="site-footer__list">
           <li><a href="{{ route('hotels') }}">Our Hotels</a></li>
-          <li><a href="{{ route('awards') }}">Destinations</a></li>
-          <li><a href="{{ route('benefits') }}">Benefits</a></li>
+          <li><a href="{{ route('destinations') }}">Destinations</a></li>
+          <li><a href="{{ route('awards') }}">Awards</a></li>
           <li><a href="{{ route('contact') }}">Contact Us</a></li>
         </ul>
       </nav>

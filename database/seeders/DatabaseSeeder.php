@@ -87,10 +87,30 @@ class DatabaseSeeder extends Seeder
 
         // 6. Seed Destinations
         $destinations = [
-            ['name' => 'Kashmir', 'image_path' => 'images/H-Kashmir.jpg', 'sort_order' => 1],
-            ['name' => 'Arunachal', 'image_path' => 'images/H-Arunachal.jpg', 'sort_order' => 2],
-            ['name' => 'Kerala', 'image_path' => 'images/H-Kerala.jpg', 'sort_order' => 3],
-            ['name' => 'Goa', 'image_path' => 'images/H-Goa.jpg', 'sort_order' => 4],
+            [
+                'name' => 'Kashmir', 
+                'image_path' => 'images/H-Kashmir.jpg', 
+                'description' => 'Experience the paradise on earth. Nestled in the Himalayan mountains, Kashmir offers breathtaking snow-capped peaks, serene dal lake shikara rides, and beautiful alpine meadows to refresh your spirit.',
+                'sort_order' => 1
+            ],
+            [
+                'name' => 'Arunachal', 
+                'image_path' => 'images/H-Arunachal.jpg', 
+                'description' => 'Discover the land of the rising sun. Arunachal Pradesh is a majestic, untouched wilderness filled with ancient monasteries, high-altitude lakes, misty forests, and diverse tribal cultural heritage.',
+                'sort_order' => 2
+            ],
+            [
+                'name' => 'Kerala', 
+                'image_path' => 'images/H-Kerala.jpg', 
+                'description' => 'Explore God\'s own country. Rest in luxury along peaceful backwaters in traditional houseboats, walk through lush green tea plantations, and revitalize your body with ancient ayurvedic wellness treatments.',
+                'sort_order' => 3
+            ],
+            [
+                'name' => 'Goa', 
+                'image_path' => 'images/H-Goa.jpg', 
+                'description' => 'Relax on pristine golden beaches. Enjoy the vibrant coastal lifestyle, historic Portuguese architectural heritage, world-class seafront dining, and breathtaking sunset cruise tours across the Arabian Sea.',
+                'sort_order' => 4
+            ],
         ];
         foreach ($destinations as $d) {
             Destination::create($d);
@@ -408,6 +428,40 @@ class DatabaseSeeder extends Seeder
             'membership_category' => 'Platinum Club Elite',
             'membership_terms' => 'Includes access to 19 premium seafront hotels across Europe and the Caribbean. Valid for up to 21 nights of stay annually. Standard resort rules apply.',
             'profile_image_path' => 'images/profile.jpg',
+        ]);
+
+        // 14. Seed Default Blog Posts
+        \App\Models\BlogPost::create([
+            'title' => 'How Yoga Supports Everyday Wellness and Stress Relief',
+            'slug' => 'how-yoga-supports-everyday-wellness-and-stress-relief',
+            'category' => 'Yoga & Mindfulness',
+            'author' => 'site.admin',
+            'summary' => 'How Yoga Supports Everyday Wellness and Stress Relief In today\'s fast-paced world, finding moments of calm can feel increasingly difficult. Between constant...',
+            'content' => "How Yoga Supports Everyday Wellness and Stress Relief\nIn today's fast-paced world, finding moments of calm can feel increasingly difficult. Between constant notifications, demanding schedules, and everyday responsibilities, stress has become part of daily life for many people. At The BodyHoliday, we believe wellness begins with creating space to slow down, reconnect, and care for both the mind and body, and yoga is one of the most powerful ways to do exactly that.\n\nAs the leading wellness resort in the Caribbean that travelers seek for rejuvenation, we've seen firsthand how yoga can support not only physical health, but emotional balance and mental clarity.\n\nThe Connection Between Yoga and Wellness\nYoga is so much more than just movement or a low-impact exercise; it's a holistic practice that combines breathwork, mindfulness, and intentional movement to support overall wellbeing. Whether practiced for ten minutes or an hour, yoga encourages you to become more present, grounded, and aware of your body's needs.\n\nAt The BodyHoliday, yoga is an essential part of the wellness experience we offer our guests. From peaceful sunrise sessions to restorative evening classes on our Reefside Yoga Deck overlooking the Caribbean Sea, each experience is designed to promote balance and relaxation.\n\nHow Yoga Helps Relieve Stress\nOne of the most recognized benefits of yoga is its ability to reduce stress. Gentle movement and controlled breathing help calm the nervous system, lower tension in the body, and encourage a sense of peace.\n\nGuests visiting The BodyHoliday often describe our yoga classes as a reset button, an opportunity to disconnect from outside pressures and reconnect with themselves. Combined with the serene atmosphere of one of the most peaceful beachfront resorts in Saint Lucia, yoga becomes even more restorative.",
+            'image_path' => 'images/WelcomeImg-1.jpg',
+            'published_at' => '2026-05-25 09:00:00',
+        ]);
+
+        \App\Models\BlogPost::create([
+            'title' => 'Thank You For Donating!',
+            'slug' => 'thank-you-for-donating',
+            'category' => 'Community Cares',
+            'author' => 'site.admin',
+            'summary' => 'Dear Guests, On behalf of our local community and the entire team, we would like to extend our heartfelt gratitude for your generous contribution to our...',
+            'content' => "Dear Guests, On behalf of our local community and the entire team, we would like to extend our heartfelt gratitude for your generous contribution to our local schools.\n\nThanks to your kindness and support, we were able to donate essential school supplies, backpacks, and sports equipment to children in need. This contribution makes a significant difference in their learning journey and helps provide them with the tools they need to succeed.\n\nAt Premium Travel Club, we believe in giving back to the destinations that welcome us. Our community outreach programs are designed to support education, healthcare, and sustainable development in the local areas surrounding our resorts.\n\nWe are incredibly proud of our members and guests who join us in these efforts. Your generosity helps build a brighter future for the children in our host communities, and we cannot thank you enough for being a part of this journey.",
+            'image_path' => 'images/WelcomeImg-3.jpg',
+            'published_at' => '2026-05-18 10:00:00',
+        ]);
+
+        \App\Models\BlogPost::create([
+            'title' => 'The Art of Mindful Eating',
+            'slug' => 'the-art-of-mindful-eating',
+            'category' => 'Food and Nutrition',
+            'author' => 'site.admin',
+            'summary' => 'At The BodyHoliday Saint Lucia, we believe that true nourishment goes beyond what\'s on your plate; it\'s about how you experience every bite. In a world that...',
+            'content' => "At The BodyHoliday Saint Lucia, we believe that true nourishment goes beyond what's on your plate; it's about how you experience every bite. In a world that encourages multitasking and constant rush, mindful eating is a simple yet transformative practice that can improve your relationship with food and support your overall health.\n\nMindful eating is the practice of bringing full awareness to the experience of eating. It involves paying attention to the colors, smells, textures, and flavors of your food, as well as listening to your body's hunger and fullness cues.\n\nBy slowing down and focusing on the present moment, you can fully appreciate your meals and make choices that truly nourish your body and mind. Our culinary team is dedicated to providing delicious, health-focused options that make mindful eating a pleasure.",
+            'image_path' => 'images/WelcomeImg-2.jpg',
+            'published_at' => '2026-05-01 11:30:00',
         ]);
     }
 }

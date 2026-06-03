@@ -27,6 +27,7 @@ class AdminContentController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:4096',
+            'description' => 'nullable|string|max:1000',
             'sort_order' => 'required|integer',
         ]);
 
@@ -53,6 +54,7 @@ class AdminContentController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:4096',
+            'description' => 'nullable|string|max:1000',
             'sort_order' => 'required|integer',
         ]);
 

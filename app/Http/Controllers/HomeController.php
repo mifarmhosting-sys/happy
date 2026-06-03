@@ -14,6 +14,7 @@ use App\Models\Benefit;
 use App\Models\Award;
 use App\Models\Stat;
 use App\Models\ContactMessage;
+use App\Models\BlogPost;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -71,6 +72,13 @@ class HomeController extends Controller
         return view('hotels', $data);
     }
 
+    public function destinationsPage()
+    {
+        $data = $this->getCommonData();
+        $data['destinations'] = Destination::orderBy('sort_order')->get();
+        return view('destinations', $data);
+    }
+
     public function benefits()
     {
         $data = $this->getCommonData();
@@ -118,5 +126,19 @@ class HomeController extends Controller
         }
 
         return redirect()->back()->with('success', 'Thank you for getting in touch! We will get back to you shortly.');
+    }
+
+    public function blogIndex()
+    {
+        $data = $this->getCommonData();
+        $data['blogs'] = BlogPost::orderBy('published_at', 'desc')->get();
+        return view('blog.index', $data);
+    }
+
+    public function blogShow($slug)
+    {
+        $data = $this->getCommonData();
+        $data['blog'] = BlogPost::where('slug', $slug)->firstOrFail();
+        return view('blog.show', $data);
     }
 }

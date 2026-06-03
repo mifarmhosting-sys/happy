@@ -22,7 +22,7 @@
       <h2>An Experience</h2>
 
       <p>
-        <strong>Premium Travel Club</strong> invites you to discover a world full of new experiences, luxury accommodations, and premium benefits designed to elevate every single vacation you take.
+        <strong>The Happy Miles</strong> invites you to discover a world full of new experiences, luxury accommodations, and premium benefits designed to elevate every single vacation you take.
       </p>
 
       <p>
@@ -30,7 +30,7 @@
       </p>
 
       <p>
-        With Premium Travel Club, you'll have direct access to reservations, special member-only rates, and local partner programs to ensure every step of your travel is smooth, memorable, and relaxing.
+        With <strong>Dream Hospitality</strong>, you'll have direct access to reservations, special member-only rates, and local partner programs to ensure every step of your travel is smooth, memorable, and relaxing.
       </p>
     </div>
   </div>

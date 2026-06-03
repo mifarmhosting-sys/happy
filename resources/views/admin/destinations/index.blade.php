@@ -39,7 +39,14 @@
                 <td>
                   <img src="{{ (file_exists(public_path($dest->image_path)) && $dest->image_path) ? asset($dest->image_path) : asset('storage/' . $dest->image_path) }}" alt="" style="width: 80px; height: 50px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border);">
                 </td>
-                <td><strong>{{ $dest->name }}</strong></td>
+                <td>
+                  <strong>{{ $dest->name }}</strong>
+                  @if($dest->description)
+                    <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: normal; margin-top: 4px;">
+                      {{ Str::limit($dest->description, 60) }}
+                    </div>
+                  @endif
+                </td>
                 <td>{{ $dest->sort_order }}</td>
                 <td>
                   <div class="actions-cell" style="justify-content: flex-end;">
@@ -82,6 +89,12 @@
         <label for="image">Featured Image</label>
         <input type="file" id="image" name="image" class="form-control" required>
         @error('image')<span style="color: var(--danger); font-size: 0.8rem;">{{ $message }}</span>@enderror
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" class="form-control" rows="4" placeholder="Enter destination details..."></textarea>
+        @error('description')<span style="color: var(--danger); font-size: 0.8rem;">{{ $message }}</span>@enderror
       </div>
 
       <div class="form-group">

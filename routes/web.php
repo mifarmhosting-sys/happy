@@ -6,14 +6,18 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminHotelController;
 use App\Http\Controllers\AdminContentController;
 use App\Http\Controllers\AdminMemberController;
+use App\Http\Controllers\AdminBlogController;
 
 // Public Frontend Routes
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/home', [HomeController::class, 'home']);
 Route::get('/our-hotels.html', [HomeController::class, 'hotels'])->name('hotels');
+Route::get('/destinations.html', [HomeController::class, 'destinationsPage'])->name('destinations');
 Route::get('/benefits.html', [HomeController::class, 'benefits'])->name('benefits');
 Route::get('/awards.html', [HomeController::class, 'awards'])->name('awards');
 Route::get('/about.html', [HomeController::class, 'about'])->name('about');
+Route::get('/blog', [HomeController::class, 'blogIndex'])->name('blog.index');
+Route::get('/blog/{slug}', [HomeController::class, 'blogShow'])->name('blog.show');
 Route::get('/contact-us.html', [HomeController::class, 'contact'])->name('contact');
 Route::post('/contact-us.html', [HomeController::class, 'contactSubmit'])->name('contact.submit');
 
@@ -82,6 +86,9 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
     // Member Management
     Route::resource('members', AdminMemberController::class, ['names' => 'admin.members']);
+
+    // Blog Posts CRUD
+    Route::resource('blogs', AdminBlogController::class, ['names' => 'admin.blogs']);
 });
 
 // Member Routing Groups

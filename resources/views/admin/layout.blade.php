@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@yield('title', 'Admin Dashboard') | {{ $settings->site_name }} CMS</title>
+  <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -453,6 +454,9 @@
       </a>
       <a href="{{ route('admin.members.index') }}" class="sidebar-link {{ Request::routeIs('admin.members.*') ? 'active' : '' }}">
         <i class="fas fa-users"></i> Registered Members
+      </a>
+      <a href="{{ route('admin.blogs.index') }}" class="sidebar-link {{ Request::routeIs('admin.blogs.*') ? 'active' : '' }}">
+        <i class="fas fa-newspaper"></i> Blog Posts
       </a>
       <a href="{{ route('home') }}" target="_blank" class="sidebar-link">
         <i class="fas fa-external-link-alt"></i> Visit Site

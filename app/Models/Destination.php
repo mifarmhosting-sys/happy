@@ -9,6 +9,7 @@ class Destination extends Model
     protected $fillable = [
         'name',
         'image_path',
+        'description',
         'sort_order',
     ];
 }

@@ -40,6 +40,12 @@
     </div>
 
     <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" name="description" class="form-control" rows="5" placeholder="Enter destination details...">{{ old('description', $destination->description) }}</textarea>
+      @error('description')<span style="color: var(--danger); font-size: 0.8rem;">{{ $message }}</span>@enderror
+    </div>
+
+    <div class="form-group">
       <label for="sort_order">Sort Order</label>
       <input type="number" id="sort_order" name="sort_order" class="form-control" value="{{ old('sort_order', $destination->sort_order) }}" required>
       @error('sort_order')<span style="color: var(--danger); font-size: 0.8rem;">{{ $message }}</span>@enderror
