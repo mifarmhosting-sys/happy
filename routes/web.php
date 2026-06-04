@@ -160,6 +160,16 @@ Route::get('/clear-cache', function() {
 
 Route::get('/list-tables', function() {
     try {
+        if (config('database.default') === 'sqlite') {
+            $dbPath = config('database.connections.sqlite.database');
+            if ($dbPath && !file_exists($dbPath)) {
+                $dir = dirname($dbPath);
+                if (!is_dir($dir)) {
+                    mkdir($dir, 0755, true);
+                }
+                touch($dbPath);
+            }
+        }
         $tables = \Illuminate\Support\Facades\DB::select("SELECT name FROM sqlite_master WHERE type='table';");
         return response()->json($tables);
     } catch (\Exception $e) {
@@ -169,6 +179,16 @@ Route::get('/list-tables', function() {
 
 Route::get('/test-db', function() {
     try {
+        if (config('database.default') === 'sqlite') {
+            $dbPath = config('database.connections.sqlite.database');
+            if ($dbPath && !file_exists($dbPath)) {
+                $dir = dirname($dbPath);
+                if (!is_dir($dir)) {
+                    mkdir($dir, 0755, true);
+                }
+                touch($dbPath);
+            }
+        }
         $path = config('database.connections.sqlite.database');
         return response()->json([
             'default' => config('database.default'),
