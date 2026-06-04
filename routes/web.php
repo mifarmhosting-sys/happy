@@ -123,10 +123,21 @@ Route::get('/run-migrations', function() {
             }
         }
         \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        $migrateOutput = \Illuminate\Support\Facades\Artisan::output();
+
         \Illuminate\Support\Facades\Artisan::call('db:seed', ['--force' => true]);
-        return 'Migrations and Seeding completed successfully!';
+        $seedOutput = \Illuminate\Support\Facades\Artisan::output();
+
+        return response()->json([
+            'status' => 'success',
+            'migrate' => $migrateOutput,
+            'seed' => $seedOutput
+        ]);
     } catch (\Exception $e) {
-        return 'Error: ' . $e->getMessage();
+        return response()->json([
+            'status' => 'error',
+            'message' => $e->getMessage()
+        ], 500);
     }
 });
 
