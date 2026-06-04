@@ -189,7 +189,7 @@
                     <span>CUSTOMER ID: <code>{{ $member->customer_id }}</code></span>
                 </div>
             </div>
-            <img src="{{ asset($settings->logo_path ? 'storage/' . $settings->logo_path : 'images/Premium.png') }}" alt="{{ $settings->site_name }}" class="profile-logo">
+            <img src="{{ asset('images/Premium.png') }}" alt="{{ $settings->site_name }}" class="profile-logo">
         </div>
 
         <div class="profile-body">

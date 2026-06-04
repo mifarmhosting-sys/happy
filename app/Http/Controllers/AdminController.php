@@ -109,21 +109,10 @@ class AdminController extends Controller
             'instagram_url' => 'nullable|url|max:255',
             'youtube_url' => 'nullable|url|max:255',
             'footer_blurb' => 'nullable|string',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
 
         $request->validate($rules);
-        $data = $request->except(['logo']);
-
-        if ($request->hasFile('logo')) {
-            // Delete old file
-            if ($settings->logo_path && Storage::disk('public')->exists($settings->logo_path)) {
-                Storage::disk('public')->delete($settings->logo_path);
-            }
-            $path = $request->file('logo')->store('images', 'public');
-            $data['logo_path'] = $path;
-            $data['footer_logo_path'] = $path;
-        }
+        $data = $request->all();
 
         $settings->fill($data)->save();
 

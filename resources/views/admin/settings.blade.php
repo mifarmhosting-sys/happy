@@ -25,12 +25,11 @@
         @error('site_name')<span style="color: var(--danger); font-size: 0.8rem;">{{ $message }}</span>@enderror
       </div>
       <div class="form-group">
-        <label for="logo">Update Logo Image (PNG / SVG preferred)</label>
-        <input type="file" id="logo" name="logo" class="form-control">
-        @if($settings->logo_path)
-          <img class="img-preview" src="{{ asset('storage/' . $settings->logo_path) }}" alt="Logo">
-        @endif
-        @error('logo')<span style="color: var(--danger); font-size: 0.8rem;">{{ $message }}</span>@enderror
+        <label>Current Logo (Fixed)</label>
+        <div style="padding: 10px; background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 4px; display: inline-block;">
+          <img class="img-preview" src="{{ asset('images/Premium.png') }}" alt="Logo" style="max-height: 40px; display: block;">
+        </div>
+        <p class="help-text" style="font-size: 0.8rem; color: #64748b; margin-top: 5px;">Logo is static and configured in the system files.</p>
       </div>
     </div>
 

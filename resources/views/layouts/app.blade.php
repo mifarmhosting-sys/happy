@@ -37,7 +37,7 @@
     <div class="main-nav">
       <div class="container main-nav__inner">
         <a href="{{ route('home') }}" class="main-nav__brand" aria-label="Premium Travel Club home">
-          <img src="{{ asset($settings->logo_path ? 'storage/' . $settings->logo_path : 'images/Premium.png') }}" alt="{{ $settings->site_name }}" class="main-nav__logo" width="180" height="40">
+          <img src="{{ asset('images/Premium.png') }}" alt="{{ $settings->site_name }}" class="main-nav__logo" width="180" height="40">
         </a>
 
         <button type="button" class="main-nav__toggle" id="navToggle" aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false">
@@ -69,7 +69,7 @@
   <footer class="site-footer">
     <div class="container site-footer__grid">
       <div class="site-footer__brand">
-        <img src="{{ asset($settings->footer_logo_path ? 'storage/' . $settings->footer_logo_path : 'images/Premium.png') }}" alt="" class="site-footer__logo" width="160" height="36">
+        <img src="{{ asset('images/Premium.png') }}" alt="" class="site-footer__logo" width="160" height="36">
         <p class="site-footer__blurb">{{ $settings->contact_address }}</p>
         <p class="site-footer__blurb" style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">{{ $settings->footer_blurb }}</p>
       </div>
