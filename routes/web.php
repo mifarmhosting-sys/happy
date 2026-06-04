@@ -158,3 +158,26 @@ Route::get('/clear-cache', function() {
     }
 });
 
+Route::get('/list-tables', function() {
+    try {
+        $tables = \Illuminate\Support\Facades\DB::select("SELECT name FROM sqlite_master WHERE type='table';");
+        return response()->json($tables);
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});
+
+Route::get('/test-db', function() {
+    try {
+        $path = config('database.connections.sqlite.database');
+        return response()->json([
+            'default' => config('database.default'),
+            'sqlite_path' => $path,
+            'db_exists' => file_exists($path),
+            'db_size' => file_exists($path) ? filesize($path) : 0,
+        ]);
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});
+
