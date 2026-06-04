@@ -129,3 +129,12 @@ Route::get('/storage-link', function() {
     }
 });
 
+Route::get('/clear-cache', function() {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('optimize:clear');
+        return 'Cache cleared successfully!';
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});
+
