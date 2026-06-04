@@ -112,6 +112,16 @@ Route::prefix('member')->group(function () {
 // Deployment helper route to run migrations and seed database without SSH
 Route::get('/run-migrations', function() {
     try {
+        if (config('database.default') === 'sqlite') {
+            $dbPath = config('database.connections.sqlite.database');
+            if ($dbPath && !file_exists($dbPath)) {
+                $dir = dirname($dbPath);
+                if (!is_dir($dir)) {
+                    mkdir($dir, 0755, true);
+                }
+                touch($dbPath);
+            }
+        }
         \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
         \Illuminate\Support\Facades\Artisan::call('db:seed', ['--force' => true]);
         return 'Migrations and Seeding completed successfully!';
@@ -131,6 +141,16 @@ Route::get('/storage-link', function() {
 
 Route::get('/clear-cache', function() {
     try {
+        if (config('database.default') === 'sqlite') {
+            $dbPath = config('database.connections.sqlite.database');
+            if ($dbPath && !file_exists($dbPath)) {
+                $dir = dirname($dbPath);
+                if (!is_dir($dir)) {
+                    mkdir($dir, 0755, true);
+                }
+                touch($dbPath);
+            }
+        }
         \Illuminate\Support\Facades\Artisan::call('optimize:clear');
         return 'Cache cleared successfully!';
     } catch (\Exception $e) {
