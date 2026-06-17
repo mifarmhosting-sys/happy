@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
     {
         // 1. Create Default Admin User
         User::create([
-            'name' => 'PTC Administrator',
-            'email' => 'admin@premiumtravel.club',
+            'name' => 'Happy Miles Administrator',
+            'email' => 'admin@happymilesdreamhospitality.com',
             'password' => Hash::make('adminpassword'),
         ]);
 

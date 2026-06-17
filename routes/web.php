@@ -176,6 +176,17 @@ Route::get('/clear-cache', function() {
                 $about->update(['title' => 'Happy Miles']);
             }
         }
+        
+        // Auto-update admin user credentials in DB if it is still the default
+        if (\Illuminate\Support\Facades\Schema::hasTable('users')) {
+            $adminUser = \App\Models\User::first();
+            if ($adminUser && $adminUser->email === 'admin@premiumtravel.club') {
+                $adminUser->update([
+                    'email' => 'admin@happymilesdreamhospitality.com',
+                    'name' => 'Happy Miles Administrator'
+                ]);
+            }
+        }
 
         \Illuminate\Support\Facades\Artisan::call('optimize:clear');
         return 'Cache cleared successfully!';

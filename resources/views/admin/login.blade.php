@@ -176,7 +176,7 @@
         @csrf
         <div class="form-group">
           <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" class="form-control" placeholder="admin@premiumtravel.club" value="{{ old('email') }}" required autofocus>
+          <input type="email" id="email" name="email" class="form-control" placeholder="admin@happymilesdreamhospitality.com" value="{{ old('email') }}" required autofocus>
         </div>
 
         <div class="form-group">

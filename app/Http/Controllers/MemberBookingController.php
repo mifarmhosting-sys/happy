@@ -89,7 +89,7 @@ class MemberBookingController extends Controller
             Mail::to($member->email)->send(new BookingReceivedCustomer($booking));
 
             // Email B: To the admin (configurable in .env, falls back to contact email or admin email)
-            $adminEmail = env('ADMIN_NOTIFICATION_EMAIL', SiteSetting::first()->contact_email ?? 'admin@premiumtravel.club');
+            $adminEmail = env('ADMIN_NOTIFICATION_EMAIL', SiteSetting::first()->contact_email ?? 'admin@happymilesdreamhospitality.com');
             Mail::to($adminEmail)->send(new BookingReceivedAdmin($booking));
         } catch (\Exception $e) {
             // Log mail failures but don't crash the booking flow
