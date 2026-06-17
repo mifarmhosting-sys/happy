@@ -97,7 +97,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Premium Travel Club</h1>
+            <h1>Happy Miles</h1>
         </div>
         <div class="content">
             <p>Dear <strong>{{ $booking->member->customer_name }}</strong>,</p>
@@ -161,10 +161,10 @@
 
             <p>Our dedicated booking team will contact you directly within the next <strong>24 Hours</strong> to coordinate the final arrangements and confirm your holiday schedule.</p>
             <p>If you have any urgent changes or questions in the meantime, please feel free to reply directly to this email.</p>
-            <p>Warm regards,<br><strong>Premium Travel Club Concierge Team</strong></p>
+            <p>Warm regards,<br><strong>Happy Miles Concierge Team</strong></p>
         </div>
         <div class="footer">
-            &copy; {{ date('Y') }} Premium Travel Club. All rights reserved.<br>
+            &copy; {{ date('Y') }} Happy Miles. All rights reserved.<br>
             Need immediate help? Contact us at <a href="mailto:support@premiumtravel.club">support@premiumtravel.club</a>
         </div>
     </div>

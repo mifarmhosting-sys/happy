@@ -124,7 +124,7 @@
     <div class="register-card">
         <div class="register-header">
             <h2>Member Sign Up</h2>
-            <p>Join the Premium Travel Club holiday portal</p>
+            <p>Join the Happy Miles holiday portal</p>
         </div>
 
         @if ($errors->any())

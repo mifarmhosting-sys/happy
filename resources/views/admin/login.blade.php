@@ -162,7 +162,7 @@
   <div class="login-container">
     <div class="login-card">
       <div class="login-header">
-        <h2>PTC Admin Panel</h2>
+        <h2>Happy Miles Admin Panel</h2>
         <p>Sign in to manage your site content</p>
       </div>
 

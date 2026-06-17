@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
 
         // 2. Seed Site Settings
         SiteSetting::create([
-            'site_name' => 'Premium Travel Club',
+            'site_name' => 'Happy Miles',
             'contact_email' => 'info@yourdomain.com',
             'contact_phone' => '+91 98765 43210',
             'contact_address' => 'AVS House, 42/1A Gurupada Halder Road. Kolkata - 700026',
@@ -67,11 +67,11 @@ class DatabaseSeeder extends Seeder
 
         // 5. Seed About Section
         AboutSection::create([
-            'title' => 'Premium Travel Club',
+            'title' => 'Happy Miles',
             'subtitle' => 'ABOUT US',
-            'description1' => 'Premium Travel Club offers a selection of 8 destinations and 19 hotels where you can enjoy exceptional seafront locations. Our hotels offer up-to-date facilities, carefully selected cuisine and services designed to cater to your every need.',
+            'description1' => 'Happy Miles offers a selection of 8 destinations and 19 hotels where you can enjoy exceptional seafront locations. Our hotels offer up-to-date facilities, carefully selected cuisine and services designed to cater to your every need.',
             'description2' => 'Since 2007, we’ve been working to guarantee the highest quality standards. Around 16,000 members are already enjoying all the benefits of our vacation program.',
-            'description3' => 'At Premium Travel Club, we always have our clients in mind and are focused on making their vacation the best that it can be.',
+            'description3' => 'At Happy Miles, we always have our clients in mind and are focused on making their vacation the best that it can be.',
             
             'amenities_title' => 'Privilege amenities',
             'amenities_description' => 'We offer our members rooms with Privilege amenities equipped with everything you will need for a relaxing and unforgettable holiday such as a fully stocked mini bar, room service, bath robes and slippers for your stay, butler service and much more.',

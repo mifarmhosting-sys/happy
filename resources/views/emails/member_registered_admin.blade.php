@@ -71,7 +71,7 @@
             <h1>New Member Registration Alert</h1>
         </div>
         <div class="content">
-            <p style="font-size: 15px; margin-top: 0;">A new member has signed up on the Premium Travel Club portal. Here are the registration details:</p>
+            <p style="font-size: 15px; margin-top: 0;">A new member has signed up on the Happy Miles portal. Here are the registration details:</p>
             
             <table class="data-table">
                 <tr>
@@ -99,7 +99,7 @@
             <p style="font-size: 14px; color: #475569; margin-top: 25px;">Please log into the admin panel to update their membership category, dates, and contract terms as necessary.</p>
         </div>
         <div class="footer">
-            This is an automated notification from Premium Travel Club.
+            This is an automated notification from Happy Miles.
         </div>
     </div>
 </body>

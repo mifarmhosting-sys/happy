@@ -162,6 +162,21 @@ Route::get('/clear-cache', function() {
                 touch($dbPath);
             }
         }
+        
+        // Auto-update site name in DB if it is still the default
+        if (\Illuminate\Support\Facades\Schema::hasTable('site_settings')) {
+            $setting = \App\Models\SiteSetting::first();
+            if ($setting && $setting->site_name === 'Premium Travel Club') {
+                $setting->update(['site_name' => 'Happy Miles']);
+            }
+        }
+        if (\Illuminate\Support\Facades\Schema::hasTable('about_sections')) {
+            $about = \App\Models\AboutSection::first();
+            if ($about && $about->title === 'Premium Travel Club') {
+                $about->update(['title' => 'Happy Miles']);
+            }
+        }
+
         \Illuminate\Support\Facades\Artisan::call('optimize:clear');
         return 'Cache cleared successfully!';
     } catch (\Exception $e) {

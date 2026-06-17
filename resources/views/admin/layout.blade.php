@@ -421,7 +421,7 @@
   <!-- CMS Sidebar Navigation -->
   <aside class="sidebar">
     <div class="sidebar-brand">
-      <h3>PTC Control Panel</h3>
+      <h3>Happy Miles Control Panel</h3>
     </div>
     
     <nav class="sidebar-menu">

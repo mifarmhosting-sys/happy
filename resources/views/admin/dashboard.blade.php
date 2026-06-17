@@ -6,7 +6,7 @@
 <div class="content-header">
   <div>
     <h1>Dashboard</h1>
-    <p class="subtitle">Welcome to the Premium Travel Club content management panel.</p>
+    <p class="subtitle">Welcome to the Happy Miles content management panel.</p>
   </div>
 </div>
 

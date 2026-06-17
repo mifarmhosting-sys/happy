@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('site_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('site_name')->default('Premium Travel Club');
+            $table->string('site_name')->default('Happy Miles');
             $table->string('contact_email')->nullable();
             $table->string('contact_phone')->nullable();
             $table->text('contact_address')->nullable();

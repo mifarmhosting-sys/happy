@@ -109,11 +109,11 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Premium Travel Club</h1>
+            <h1>Happy Miles</h1>
         </div>
         <div class="content">
             <p>Dear <strong>{{ $member->customer_name }}</strong>,</p>
-            <p>Welcome to the Premium Travel Club family! We are excited to inform you that your membership registration is complete.</p>
+            <p>Welcome to the Happy Miles family! We are excited to inform you that your membership registration is complete.</p>
             
             <div class="activation-box">
                 <div class="activation-text">Your membership has been activated. You can now sign in and explore.</div>
@@ -131,10 +131,10 @@
 
             <p>Through your member dashboard, you can review your membership status, update family profiles, and request priority holiday bookings across our 19+ premium seafront hotels and global destinations.</p>
             <p>If you have any questions or need immediate assistance, please reply to this email.</p>
-            <p>Best regards,<br><strong>Premium Travel Club Registration Team</strong></p>
+            <p>Best regards,<br><strong>Happy Miles Registration Team</strong></p>
         </div>
         <div class="footer">
-            &copy; {{ date('Y') }} Premium Travel Club. All rights reserved.<br>
+            &copy; {{ date('Y') }} Happy Miles. All rights reserved.<br>
             Need help? Contact us at <a href="mailto:support@premiumtravel.club">support@premiumtravel.club</a>
         </div>
     </div>

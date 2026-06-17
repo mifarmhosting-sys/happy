@@ -36,7 +36,7 @@
 
     <div class="main-nav">
       <div class="container main-nav__inner">
-        <a href="{{ route('home') }}" class="main-nav__brand" aria-label="Premium Travel Club home">
+        <a href="{{ route('home') }}" class="main-nav__brand" aria-label="Happy Miles home">
           <img src="{{ asset('images/Premium.png') }}" alt="{{ $settings->site_name }}" class="main-nav__logo" width="180" height="40">
         </a>
 
