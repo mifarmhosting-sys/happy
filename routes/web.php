@@ -163,6 +163,9 @@ Route::get('/clear-cache', function() {
             }
         }
         
+        // Ensure migrations are run to create missing tables (like cache)
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        
         // Auto-update site name in DB if it is still the default
         if (\Illuminate\Support\Facades\Schema::hasTable('site_settings')) {
             $setting = \App\Models\SiteSetting::first();
