@@ -623,6 +623,7 @@ ul {
 
 .hotel-tabs__bar {
   display: flex;
+  width: max-content;
   min-width: min(920px, 100%);
   margin: 0 auto;
   border: 1px solid var(--color-border);

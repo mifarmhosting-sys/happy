@@ -101,6 +101,8 @@
                     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3c2 3 6 6 6 10a6 6 0 1 1-12 0c0-4 4-7 6-10z"/><path d="M12 13v5"/></svg>
                   @elseif($cat->slug == 'wedding')
                     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="9" cy="12" rx="4" ry="5"/><ellipse cx="15" cy="12" rx="4" ry="5"/></svg>
+                  @else
+                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                   @endif
                 </span>
                 <span class="hotel-tabs__label">{{ $cat->name }}</span>

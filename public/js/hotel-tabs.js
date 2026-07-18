@@ -78,7 +78,8 @@
   }
 
   function buildGrid(tabKey) {
-    var rows = HOTEL_DATA[tabKey] || HOTEL_DATA.all;
+    var defaultKey = Object.keys(HOTEL_DATA)[0];
+    var rows = HOTEL_DATA[tabKey] || HOTEL_DATA[defaultKey] || [];
     return '<div class="hotel-tabs__grid">' + rows.map(buildCard).join('') + '</div>';
   }
 
@@ -87,7 +88,7 @@
     var tabs = document.querySelectorAll('[data-hotel-tab]');
     if (!root || !tabs.length) return;
 
-    var activeKey = 'all';
+    var activeKey = tabs[0].getAttribute('data-hotel-tab');
     var switching = false;
 
     var surface = document.createElement('div');

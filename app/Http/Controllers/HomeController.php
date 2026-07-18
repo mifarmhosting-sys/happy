@@ -35,7 +35,7 @@ class HomeController extends Controller
         $data['testimonials'] = Testimonial::where('type', 'home')->orderBy('sort_order')->get();
         
         // Prepare Hotel Tab Data for the interactive tab menu
-        $categories = HotelCategory::whereIn('slug', ['all', 'adults', 'spa', 'wedding'])->get();
+        $categories = HotelCategory::all();
         $hotelTabData = [];
         
         foreach ($categories as $cat) {
@@ -62,12 +62,23 @@ class HomeController extends Controller
     {
         $data = $this->getCommonData();
         
-        // Group hotels by country
-        $hotelsByCountry = Hotel::orderBy('sort_order')->get()->groupBy('country');
+        // Hardcode the requested countries to guarantee they always appear as tabs
+        $countries = ['India', 'Bali', 'Sri Lanka', 'Malaysia', 'Nepal', 'Thailand', 'Indonesia', 'Bhutan'];
+        
+        $hotelsByCountry = collect();
+        $allHotels = Hotel::orderBy('sort_order')->get();
+        
+        foreach ($countries as $country) {
+            $matchedHotels = $allHotels->filter(function($hotel) use ($country) {
+                return strtolower(trim($hotel->country)) === strtolower(trim($country));
+            });
+            $hotelsByCountry->put($country, $matchedHotels);
+        }
+        
         $data['hotelsByCountry'] = $hotelsByCountry;
         
-        // Active country for tab highlighting (default to Jamaica)
-        $data['activeCountry'] = $request->get('country', 'Jamaica');
+        // Active country for tab highlighting
+        $data['activeCountry'] = $request->get('country', 'India');
         
         return view('hotels', $data);
     }

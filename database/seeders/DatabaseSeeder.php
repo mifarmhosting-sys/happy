@@ -196,46 +196,49 @@ class DatabaseSeeder extends Seeder
         // Specific properties page hotels (from our-hotels.html)
         $propHotels = [
             [
-                'name' => 'Ocean Coral Spring', 'rating' => 5, 'location' => 'Montego bay | Jamaica', 'country' => 'Jamaica',
-                'description' => 'The Ocean Coral Spring is a newly built five-star resort. Located on the seafront at Coral Spring with access to a spectacular beach...', 'image_path' => 'images/jamaica2.jpg',
+                'name' => 'Summit Barsana Resort & Spa', 'rating' => 4, 'location' => 'Kalimpong', 'country' => 'India',
+                'description' => 'Summit Barsana Resort & Spa, Kalimpong is a serene hillside retreat offering comfortable accommodations with beautiful Himalayan views. Surrounded by lush greenery, the resort features well-appointed rooms, a multi-cuisine restaurant, a rejuvenating spa, and modern amenities, making it an ideal choice for couples, families, and leisure travelers seeking a peaceful stay in Kalimpong.', 'image_path' => 'images/profile.jpg',
                 'categories' => ['all']
             ],
             [
-                'name' => 'Ocean Riviera Paradise', 'rating' => 5, 'location' => 'Riviera Maya | Mexico', 'country' => 'Mexico',
-                'description' => 'The Ocean Riviera Paradise is a newly-built five-star resort located on the Riviera Maya seafront...', 'image_path' => 'images/profile.jpg',
+                'name' => 'Hotel priority', 'rating' => 3, 'location' => 'Guwahati', 'country' => 'India',
+                'description' => 'Hotel Priority, Guwahati is a comfortable and conveniently located hotel offering a pleasant stay for both business and leisure travelers. Featuring well-appointed rooms, modern amenities, and warm hospitality, the hotel provides easy access to Guwahati Railway Station, popular attractions, shopping areas, and the city\'s major landmarks.', 'image_path' => 'images/profile.jpg',
                 'categories' => ['all']
             ],
             [
-                'name' => 'H10 Conquistador', 'rating' => 4, 'location' => 'Tenerife | Spain', 'country' => 'Spain',
-                'description' => 'Facing the sea in Playa de las Américas, with direct access to the seafront promenade...', 'image_path' => 'images/spain1.jpg',
+                'name' => 'Woodberry Hotel & Spa', 'rating' => 4, 'location' => 'Gangtok', 'country' => 'India',
+                'description' => 'Woodberry Hotel & Spa offers a perfect blend of comfort, elegance, and warm hospitality. Featuring well-appointed rooms, modern amenities, a relaxing spa, and a delightful dining experience, the hotel provides a peaceful retreat for both leisure and business travelers, ensuring a comfortable and memorable stay.', 'image_path' => 'images/profile.jpg',
                 'categories' => ['all']
             ],
             [
-                'name' => 'H10 Las Palmeras', 'rating' => 4, 'location' => 'Tenerife | Spain', 'country' => 'Spain',
-                'description' => 'Located in the heart of Playa de las Américas and with direct access to the seafront promenade...', 'image_path' => 'images/spain2.jpg',
+                'name' => 'The Comfort Inn By STH Hotels', 'rating' => 3, 'location' => 'Shimla', 'country' => 'India',
+                'description' => 'The Comfort Inn by STH Hotels offers a warm and inviting stay where comfort meets genuine hospitality. Featuring cozy, well-appointed rooms, modern amenities, and attentive service, the hotel provides a relaxing retreat for every traveler. Whether you\'re visiting for business or leisure, enjoy a pleasant and memorable stay in a welcoming atmosphere.', 'image_path' => 'images/profile.jpg',
                 'categories' => ['all']
             ],
             [
-                'name' => 'H10 Costa Adeje Palace', 'rating' => 4, 'location' => 'Tenerife | Spain', 'country' => 'Spain',
-                'description' => 'Located on the seafront with direct access to La Enramada beach...', 'image_path' => 'images/spain3.jpg',
+                'name' => 'The Soma Hotel', 'rating' => 3, 'location' => 'Darjeeling', 'country' => 'India',
+                'description' => 'The Soma Hotel Darjeeling is a modern boutique hotel conveniently located near Mall Road and the town\'s major attractions. Offering well-appointed rooms with contemporary amenities, the hotel ensures a comfortable and relaxing stay for both families and couples. Guests can enjoy delicious multi-cuisine dining, warm hospitality, and, from select rooms, stunning views of the majestic Kanchenjunga. With its excellent location and quality service, The Soma Hotel is an ideal choice for a memorable stay in the Queen of the Hills.', 'image_path' => 'images/profile.jpg',
+                'categories' => ['all']
+            ],
+            [
+                'name' => 'La Nicholas Dei Da Kine Resort', 'rating' => 4, 'location' => 'Shillong', 'country' => 'India',
+                'description' => 'La Nicholas - Lake View (by Summit Hotels) is a premier 4-star resort located near the tranquil waters of Umiam Lake in Shillong, Meghalaya. Positioned away from the busy commercial center of Shillong, this property balances natural hilltop vistas with premium hospitality.', 'image_path' => 'images/profile.jpg',
                 'categories' => ['all']
             ]
         ];
 
         // Seed all hotels
         $allHotels = array_merge($tabHotels, $propHotels);
-        $hotelIdsSeeded = [];
 
         foreach ($allHotels as $hData) {
-            // Check if hotel already seeded to avoid duplicates
-            if (in_array($hData['name'], $hotelIdsSeeded)) {
+            // Check if hotel already exists in DB to avoid duplicates
+            if (Hotel::where('name', $hData['name'])->exists()) {
                 continue;
             }
             $categories = $hData['categories'];
             unset($hData['categories']);
             
             $h = Hotel::create($hData);
-            $hotelIdsSeeded[] = $h->name;
             
             // Attach categories
             foreach ($categories as $catSlug) {
