@@ -137,7 +137,11 @@ class DatabaseSeeder extends Seeder
         ];
         $categoryModels = [];
         foreach ($cats as $c) {
-            $categoryModels[$c['slug']] = HotelCategory::create($c);
+            if (!HotelCategory::where('slug', $c['slug'])->exists()) {
+                $categoryModels[$c['slug']] = HotelCategory::create($c);
+            } else {
+                $categoryModels[$c['slug']] = HotelCategory::where('slug', $c['slug'])->first();
+            }
         }
 
         // 8. Seed Hotels and Associate with Categories
