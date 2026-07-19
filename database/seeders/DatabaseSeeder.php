@@ -22,68 +22,78 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // 1. Create Default Admin User
-        User::create([
-            'name' => 'Happy Miles Administrator',
-            'email' => 'admin@happymilesdreamhospitality.com',
-            'password' => Hash::make('adminpassword'),
-        ]);
+        if (!User::where('email', 'admin@happymilesdreamhospitality.com')->exists()) {
+            User::create([
+                'name' => 'Happy Miles Administrator',
+                'email' => 'admin@happymilesdreamhospitality.com',
+                'password' => Hash::make('adminpassword'),
+            ]);
+        }
 
         // 2. Seed Site Settings
-        SiteSetting::create([
-            'site_name' => 'Happy Miles',
-            'contact_email' => 'info@yourdomain.com',
-            'contact_phone' => '+91 98765 43210',
-            'contact_address' => 'AVS House, 42/1A Gurupada Halder Road. Kolkata - 700026',
-            'working_hours' => 'Mon - Sat: 10:00 AM - 7:00 PM',
-            'facebook_url' => '#',
-            'instagram_url' => '#',
-            'youtube_url' => '#',
-            'logo_path' => 'images/Premium.png',
-            'footer_logo_path' => 'images/Premium.png',
-            'footer_blurb' => 'Division of The Happy Miles Tourism. Luxury resorts across the Caribbean, the Canary Islands, and Spain.',
-        ]);
+        if (SiteSetting::count() === 0) {
+            SiteSetting::create([
+                'site_name' => 'Happy Miles',
+                'contact_email' => 'info@yourdomain.com',
+                'contact_phone' => '+91 98765 43210',
+                'contact_address' => 'AVS House, 42/1A Gurupada Halder Road. Kolkata - 700026',
+                'working_hours' => 'Mon - Sat: 10:00 AM - 7:00 PM',
+                'facebook_url' => '#',
+                'instagram_url' => '#',
+                'youtube_url' => '#',
+                'logo_path' => 'images/Premium.png',
+                'footer_logo_path' => 'images/Premium.png',
+                'footer_blurb' => 'Division of The Happy Miles Tourism. Luxury resorts across the Caribbean, the Canary Islands, and Spain.',
+            ]);
+        }
 
         // 3. Seed Hero Section
-        HeroSection::create([
-            'eyebrow' => 'Signature Travel Experience',
-            'title' => 'Discover the Art of Resort Living',
-            'subtitle' => 'Resort Life Awaits',
-            'video_path' => 'images/video.mp4',
-            'image_fallback_path' => 'images/HomeVideoBG.jpg',
-        ]);
+        if (HeroSection::count() === 0) {
+            HeroSection::create([
+                'eyebrow' => 'Signature Travel Experience',
+                'title' => 'Discover the Art of Resort Living',
+                'subtitle' => 'Resort Life Awaits',
+                'video_path' => 'images/video.mp4',
+                'image_fallback_path' => 'images/HomeVideoBG.jpg',
+            ]);
+        }
 
         // 4. Seed Welcome Section
-        WelcomeSection::create([
-            'tagline' => 'Happy Miles',
-            'title' => 'Dream Hospitality',
-            'description1' => 'Happy Miles Dream Hospitality is more than just a tour & travel company—we create experiences that go beyond ordinary journeys. We turn your dream vacations into reality with the perfect blend of comfort, luxury, and relaxation, ensuring every moment is truly special.',
-            'description2' => 'From customized tours and dream holidays to personal events, day outings, candle light dinners, wellness services, and personal grooming—we offer complete hospitality solutions under one roof. Our focus is on delivering personalized, high-quality services that match your expectations and lifestyle.',
-            'accent_text' => 'Where every miles begins with a hapy smile!',
-            'image1_path' => 'images/WelcomeImg-1.jpg',
-            'image2_path' => 'images/WelcomeImg-2.jpg',
-            'image3_path' => 'images/WelcomeImg-3.jpg',
-            'image4_path' => 'images/WelcomeImg-4.jpg',
-        ]);
+        if (WelcomeSection::count() === 0) {
+            WelcomeSection::create([
+                'tagline' => 'Happy Miles',
+                'title' => 'Dream Hospitality',
+                'description1' => 'Happy Miles Dream Hospitality is more than just a tour & travel company—we create experiences that go beyond ordinary journeys. We turn your dream vacations into reality with the perfect blend of comfort, luxury, and relaxation, ensuring every moment is truly special.',
+                'description2' => 'From customized tours and dream holidays to personal events, day outings, candle light dinners, wellness services, and personal grooming—we offer complete hospitality solutions under one roof. Our focus is on delivering personalized, high-quality services that match your expectations and lifestyle.',
+                'accent_text' => 'Where every miles begins with a hapy smile!',
+                'image1_path' => 'images/WelcomeImg-1.jpg',
+                'image2_path' => 'images/WelcomeImg-2.jpg',
+                'image3_path' => 'images/WelcomeImg-3.jpg',
+                'image4_path' => 'images/WelcomeImg-4.jpg',
+            ]);
+        }
 
         // 5. Seed About Section
-        AboutSection::create([
-            'title' => 'Happy Miles',
-            'subtitle' => 'ABOUT US',
-            'description1' => 'Happy Miles offers a selection of 8 destinations and 19 hotels where you can enjoy exceptional seafront locations. Our hotels offer up-to-date facilities, carefully selected cuisine and services designed to cater to your every need.',
-            'description2' => 'Since 2007, we’ve been working to guarantee the highest quality standards. Around 16,000 members are already enjoying all the benefits of our vacation program.',
-            'description3' => 'At Happy Miles, we always have our clients in mind and are focused on making their vacation the best that it can be.',
-            
-            'amenities_title' => 'Privilege amenities',
-            'amenities_description' => 'We offer our members rooms with Privilege amenities equipped with everything you will need for a relaxing and unforgettable holiday such as a fully stocked mini bar, room service, bath robes and slippers for your stay, butler service and much more.',
-            'amenities_image_path' => 'images/About-1.jpg',
-            
-            'offers_title' => 'Special Offers',
-            'offers_description' => 'Who doesn’t like an extra discount? We want you to get the best deal so make sure to login and check out all the active promotions available at our affiliated resorts and start planning your next getaway!',
-            'offers_image_path' => 'images/About-2.jpg',
-            
-            'about_image1_path' => 'images/WelcomeImg-1.jpg',
-            'about_image2_path' => 'images/WelcomeImg-2.jpg',
-        ]);
+        if (AboutSection::count() === 0) {
+            AboutSection::create([
+                'title' => 'Happy Miles',
+                'subtitle' => 'ABOUT US',
+                'description1' => 'Happy Miles offers a selection of 8 destinations and 19 hotels where you can enjoy exceptional seafront locations. Our hotels offer up-to-date facilities, carefully selected cuisine and services designed to cater to your every need.',
+                'description2' => 'Since 2007, we’ve been working to guarantee the highest quality standards. Around 16,000 members are already enjoying all the benefits of our vacation program.',
+                'description3' => 'At Happy Miles, we always have our clients in mind and are focused on making their vacation the best that it can be.',
+                
+                'amenities_title' => 'Privilege amenities',
+                'amenities_description' => 'We offer our members rooms with Privilege amenities equipped with everything you will need for a relaxing and unforgettable holiday such as a fully stocked mini bar, room service, bath robes and slippers for your stay, butler service and much more.',
+                'amenities_image_path' => 'images/About-1.jpg',
+                
+                'offers_title' => 'Special Offers',
+                'offers_description' => 'Who doesn’t like an extra discount? We want you to get the best deal so make sure to login and check out all the active promotions available at our affiliated resorts and start planning your next getaway!',
+                'offers_image_path' => 'images/About-2.jpg',
+                
+                'about_image1_path' => 'images/WelcomeImg-1.jpg',
+                'about_image2_path' => 'images/WelcomeImg-2.jpg',
+            ]);
+        }
 
         // 6. Seed Destinations
         $destinations = [
@@ -113,7 +123,9 @@ class DatabaseSeeder extends Seeder
             ],
         ];
         foreach ($destinations as $d) {
-            Destination::create($d);
+            if (!Destination::where('name', $d['name'])->exists()) {
+                Destination::create($d);
+            }
         }
 
         // 7. Seed Hotel Categories
@@ -310,7 +322,9 @@ class DatabaseSeeder extends Seeder
             ]
         ];
         foreach ($testimonials as $t) {
-            Testimonial::create($t);
+            if (!Testimonial::where('quote', $t['quote'])->exists()) {
+                Testimonial::create($t);
+            }
         }
 
         // 10. Seed Benefits
@@ -353,7 +367,9 @@ class DatabaseSeeder extends Seeder
             ]
         ];
         foreach ($benefits as $b) {
-            Benefit::create($b);
+            if (!Benefit::where('title', $b['title'])->exists()) {
+                Benefit::create($b);
+            }
         }
 
         // 11. Seed Awards
@@ -396,7 +412,9 @@ class DatabaseSeeder extends Seeder
             ]
         ];
         foreach ($awards as $a) {
-            Award::create($a);
+            if (!Award::where('title', $a['title'])->exists()) {
+                Award::create($a);
+            }
         }
 
         // 12. Seed Stats
@@ -407,64 +425,74 @@ class DatabaseSeeder extends Seeder
             ['value' => '5★', 'label' => 'Average Rating', 'sort_order' => 4],
         ];
         foreach ($stats as $s) {
-            Stat::create($s);
+            if (!Stat::where('label', $s['label'])->exists()) {
+                Stat::create($s);
+            }
         }
 
         // 13. Seed Default Member
-        \App\Models\Member::create([
-            'customer_id' => 'PTC-1001',
-            'password' => Hash::make('memberpassword'),
-            'customer_name' => 'Tanmoy Saha',
-            'age' => 32,
-            'co_customer_name' => 'Priya Saha',
-            'co_customer_age' => 28,
-            'kid_1_name' => 'Rohan Saha',
-            'kid_1_age' => 6,
-            'kid_2_name' => 'Riya Saha',
-            'kid_2_age' => 3,
-            'address' => '123 Dream Valley, Salt Lake, Kolkata, West Bengal - 700091',
-            'mobile_1' => '+91 98300 12345',
-            'mobile_2' => '+91 98300 54321',
-            'email' => 'member@premiumtravel.club',
-            'membership_issue_date' => '2026-01-15',
-            'membership_expiry_date' => '2031-01-15',
-            'membership_category' => 'Platinum Club Elite',
-            'membership_terms' => 'Includes access to 19 premium seafront hotels across Europe and the Caribbean. Valid for up to 21 nights of stay annually. Standard resort rules apply.',
-            'profile_image_path' => 'images/profile.jpg',
-        ]);
+        if (!\App\Models\Member::where('customer_id', 'PTC-1001')->exists()) {
+            \App\Models\Member::create([
+                'customer_id' => 'PTC-1001',
+                'password' => Hash::make('memberpassword'),
+                'customer_name' => 'Tanmoy Saha',
+                'age' => 32,
+                'co_customer_name' => 'Priya Saha',
+                'co_customer_age' => 28,
+                'kid_1_name' => 'Rohan Saha',
+                'kid_1_age' => 6,
+                'kid_2_name' => 'Riya Saha',
+                'kid_2_age' => 3,
+                'address' => '123 Dream Valley, Salt Lake, Kolkata, West Bengal - 700091',
+                'mobile_1' => '+91 98300 12345',
+                'mobile_2' => '+91 98300 54321',
+                'email' => 'member@premiumtravel.club',
+                'membership_issue_date' => '2026-01-15',
+                'membership_expiry_date' => '2031-01-15',
+                'membership_category' => 'Platinum Club Elite',
+                'membership_terms' => 'Includes access to 19 premium seafront hotels across Europe and the Caribbean. Valid for up to 21 nights of stay annually. Standard resort rules apply.',
+                'profile_image_path' => 'images/profile.jpg',
+            ]);
+        }
 
         // 14. Seed Default Blog Posts
-        \App\Models\BlogPost::create([
-            'title' => 'How Yoga Supports Everyday Wellness and Stress Relief',
-            'slug' => 'how-yoga-supports-everyday-wellness-and-stress-relief',
-            'category' => 'Yoga & Mindfulness',
-            'author' => 'site.admin',
-            'summary' => 'How Yoga Supports Everyday Wellness and Stress Relief In today\'s fast-paced world, finding moments of calm can feel increasingly difficult. Between constant...',
-            'content' => "How Yoga Supports Everyday Wellness and Stress Relief\nIn today's fast-paced world, finding moments of calm can feel increasingly difficult. Between constant notifications, demanding schedules, and everyday responsibilities, stress has become part of daily life for many people. At The BodyHoliday, we believe wellness begins with creating space to slow down, reconnect, and care for both the mind and body, and yoga is one of the most powerful ways to do exactly that.\n\nAs the leading wellness resort in the Caribbean that travelers seek for rejuvenation, we've seen firsthand how yoga can support not only physical health, but emotional balance and mental clarity.\n\nThe Connection Between Yoga and Wellness\nYoga is so much more than just movement or a low-impact exercise; it's a holistic practice that combines breathwork, mindfulness, and intentional movement to support overall wellbeing. Whether practiced for ten minutes or an hour, yoga encourages you to become more present, grounded, and aware of your body's needs.\n\nAt The BodyHoliday, yoga is an essential part of the wellness experience we offer our guests. From peaceful sunrise sessions to restorative evening classes on our Reefside Yoga Deck overlooking the Caribbean Sea, each experience is designed to promote balance and relaxation.\n\nHow Yoga Helps Relieve Stress\nOne of the most recognized benefits of yoga is its ability to reduce stress. Gentle movement and controlled breathing help calm the nervous system, lower tension in the body, and encourage a sense of peace.\n\nGuests visiting The BodyHoliday often describe our yoga classes as a reset button, an opportunity to disconnect from outside pressures and reconnect with themselves. Combined with the serene atmosphere of one of the most peaceful beachfront resorts in Saint Lucia, yoga becomes even more restorative.",
-            'image_path' => 'images/WelcomeImg-1.jpg',
-            'published_at' => '2026-05-25 09:00:00',
-        ]);
+        if (!\App\Models\BlogPost::where('slug', 'how-yoga-supports-everyday-wellness-and-stress-relief')->exists()) {
+            \App\Models\BlogPost::create([
+                'title' => 'How Yoga Supports Everyday Wellness and Stress Relief',
+                'slug' => 'how-yoga-supports-everyday-wellness-and-stress-relief',
+                'category' => 'Yoga & Mindfulness',
+                'author' => 'site.admin',
+                'summary' => 'How Yoga Supports Everyday Wellness and Stress Relief In today\'s fast-paced world, finding moments of calm can feel increasingly difficult. Between constant...',
+                'content' => "How Yoga Supports Everyday Wellness and Stress Relief\nIn today's fast-paced world, finding moments of calm can feel increasingly difficult. Between constant notifications, demanding schedules, and everyday responsibilities, stress has become part of daily life for many people. At The BodyHoliday, we believe wellness begins with creating space to slow down, reconnect, and care for both the mind and body, and yoga is one of the most powerful ways to do exactly that.\n\nAs the leading wellness resort in the Caribbean that travelers seek for rejuvenation, we've seen firsthand how yoga can support not only physical health, but emotional balance and mental clarity.\n\nThe Connection Between Yoga and Wellness\nYoga is so much more than just movement or a low-impact exercise; it's a holistic practice that combines breathwork, mindfulness, and intentional movement to support overall wellbeing. Whether practiced for ten minutes or an hour, yoga encourages you to become more present, grounded, and aware of your body's needs.\n\nAt The BodyHoliday, yoga is an essential part of the wellness experience we offer our guests. From peaceful sunrise sessions to restorative evening classes on our Reefside Yoga Deck overlooking the Caribbean Sea, each experience is designed to promote balance and relaxation.\n\nHow Yoga Helps Relieve Stress\nOne of the most recognized benefits of yoga is its ability to reduce stress. Gentle movement and controlled breathing help calm the nervous system, lower tension in the body, and encourage a sense of peace.\n\nGuests visiting The BodyHoliday often describe our yoga classes as a reset button, an opportunity to disconnect from outside pressures and reconnect with themselves. Combined with the serene atmosphere of one of the most peaceful beachfront resorts in Saint Lucia, yoga becomes even more restorative.",
+                'image_path' => 'images/WelcomeImg-1.jpg',
+                'published_at' => '2026-05-25 09:00:00',
+            ]);
+        }
 
-        \App\Models\BlogPost::create([
-            'title' => 'Thank You For Donating!',
-            'slug' => 'thank-you-for-donating',
-            'category' => 'Community Cares',
-            'author' => 'site.admin',
-            'summary' => 'Dear Guests, On behalf of our local community and the entire team, we would like to extend our heartfelt gratitude for your generous contribution to our...',
-            'content' => "Dear Guests, On behalf of our local community and the entire team, we would like to extend our heartfelt gratitude for your generous contribution to our local schools.\n\nThanks to your kindness and support, we were able to donate essential school supplies, backpacks, and sports equipment to children in need. This contribution makes a significant difference in their learning journey and helps provide them with the tools they need to succeed.\n\nAt Premium Travel Club, we believe in giving back to the destinations that welcome us. Our community outreach programs are designed to support education, healthcare, and sustainable development in the local areas surrounding our resorts.\n\nWe are incredibly proud of our members and guests who join us in these efforts. Your generosity helps build a brighter future for the children in our host communities, and we cannot thank you enough for being a part of this journey.",
-            'image_path' => 'images/WelcomeImg-3.jpg',
-            'published_at' => '2026-05-18 10:00:00',
-        ]);
+        if (!\App\Models\BlogPost::where('slug', 'thank-you-for-donating')->exists()) {
+            \App\Models\BlogPost::create([
+                'title' => 'Thank You For Donating!',
+                'slug' => 'thank-you-for-donating',
+                'category' => 'Community Cares',
+                'author' => 'site.admin',
+                'summary' => 'Dear Guests, On behalf of our local community and the entire team, we would like to extend our heartfelt gratitude for your generous contribution to our...',
+                'content' => "Dear Guests, On behalf of our local community and the entire team, we would like to extend our heartfelt gratitude for your generous contribution to our local schools.\n\nThanks to your kindness and support, we were able to donate essential school supplies, backpacks, and sports equipment to children in need. This contribution makes a significant difference in their learning journey and helps provide them with the tools they need to succeed.\n\nAt Premium Travel Club, we believe in giving back to the destinations that welcome us. Our community outreach programs are designed to support education, healthcare, and sustainable development in the local areas surrounding our resorts.\n\nWe are incredibly proud of our members and guests who join us in these efforts. Your generosity helps build a brighter future for the children in our host communities, and we cannot thank you enough for being a part of this journey.",
+                'image_path' => 'images/WelcomeImg-3.jpg',
+                'published_at' => '2026-05-18 10:00:00',
+            ]);
+        }
 
-        \App\Models\BlogPost::create([
-            'title' => 'The Art of Mindful Eating',
-            'slug' => 'the-art-of-mindful-eating',
-            'category' => 'Food and Nutrition',
-            'author' => 'site.admin',
-            'summary' => 'At The BodyHoliday Saint Lucia, we believe that true nourishment goes beyond what\'s on your plate; it\'s about how you experience every bite. In a world that...',
-            'content' => "At The BodyHoliday Saint Lucia, we believe that true nourishment goes beyond what's on your plate; it's about how you experience every bite. In a world that encourages multitasking and constant rush, mindful eating is a simple yet transformative practice that can improve your relationship with food and support your overall health.\n\nMindful eating is the practice of bringing full awareness to the experience of eating. It involves paying attention to the colors, smells, textures, and flavors of your food, as well as listening to your body's hunger and fullness cues.\n\nBy slowing down and focusing on the present moment, you can fully appreciate your meals and make choices that truly nourish your body and mind. Our culinary team is dedicated to providing delicious, health-focused options that make mindful eating a pleasure.",
-            'image_path' => 'images/WelcomeImg-2.jpg',
-            'published_at' => '2026-05-01 11:30:00',
-        ]);
+        if (!\App\Models\BlogPost::where('slug', 'the-art-of-mindful-eating')->exists()) {
+            \App\Models\BlogPost::create([
+                'title' => 'The Art of Mindful Eating',
+                'slug' => 'the-art-of-mindful-eating',
+                'category' => 'Food and Nutrition',
+                'author' => 'site.admin',
+                'summary' => 'At The BodyHoliday Saint Lucia, we believe that true nourishment goes beyond what\'s on your plate; it\'s about how you experience every bite. In a world that...',
+                'content' => "At The BodyHoliday Saint Lucia, we believe that true nourishment goes beyond what's on your plate; it's about how you experience every bite. In a world that encourages multitasking and constant rush, mindful eating is a simple yet transformative practice that can improve your relationship with food and support your overall health.\n\nMindful eating is the practice of bringing full awareness to the experience of eating. It involves paying attention to the colors, smells, textures, and flavors of your food, as well as listening to your body's hunger and fullness cues.\n\nBy slowing down and focusing on the present moment, you can fully appreciate your meals and make choices that truly nourish your body and mind. Our culinary team is dedicated to providing delicious, health-focused options that make mindful eating a pleasure.",
+                'image_path' => 'images/WelcomeImg-2.jpg',
+                'published_at' => '2026-05-01 11:30:00',
+            ]);
+        }
     }
 }
