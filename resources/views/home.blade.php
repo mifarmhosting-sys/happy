@@ -205,7 +205,7 @@
     // Dynamically inject PHP data for hotel tabs
     window.HOTEL_DATA = {!! json_encode($hotelTabData) !!};
   </script>
-  <script src="{{ asset('js/hotel-tabs.js') }}"></script>
+  <script src="{{ asset('js/hotel-tabs.js') }}?v={{ time() }}"></script>
   <script>
     (function () {
       'use strict';

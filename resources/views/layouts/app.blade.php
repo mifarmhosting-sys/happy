@@ -7,7 +7,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title', $settings->site_name . ' | Discover the Art of Resort Living')</title>
   <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
-  <link rel="stylesheet" href="{{ asset('css/master.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/master.css') }}?v={{ time() }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   @yield('styles')
 </head>
