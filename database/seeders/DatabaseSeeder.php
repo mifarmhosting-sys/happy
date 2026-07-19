@@ -501,5 +501,10 @@ class DatabaseSeeder extends Seeder
                 'published_at' => '2026-05-01 11:30:00',
             ]);
         }
+
+        // Call the HotelsTableSeeder to populate country categories and new hotels
+        $this->call([
+            HotelsTableSeeder::class,
+        ]);
     }
 }
