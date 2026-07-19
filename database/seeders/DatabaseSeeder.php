@@ -247,21 +247,24 @@ class DatabaseSeeder extends Seeder
         $allHotels = array_merge($tabHotels, $propHotels);
 
         foreach ($allHotels as $hData) {
-            // Check if hotel already exists in DB to avoid duplicates
-            if (Hotel::where('name', $hData['name'])->exists()) {
-                continue;
-            }
             $categories = $hData['categories'];
             unset($hData['categories']);
             
-            $h = Hotel::create($hData);
+            $h = Hotel::where('name', $hData['name'])->first();
+            if (!$h) {
+                $h = Hotel::create($hData);
+            } else {
+                $h->update($hData);
+            }
             
-            // Attach categories
+            // Attach/Sync categories
+            $catIds = [];
             foreach ($categories as $catSlug) {
                 if (isset($categoryModels[$catSlug])) {
-                    $h->categories()->attach($categoryModels[$catSlug]->id);
+                    $catIds[] = $categoryModels[$catSlug]->id;
                 }
             }
+            $h->categories()->sync($catIds);
         }
 
         // 9. Seed Testimonials
