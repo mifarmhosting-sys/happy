@@ -144,6 +144,8 @@ Route::get('/run-migrations', function() {
 Route::get('/storage-link', function() {
     try {
         $link = public_path('storage');
+        $target = storage_path('app/public');
+        
         if (file_exists($link) || is_link($link)) {
             if (is_link($link)) {
                 unlink($link);
@@ -151,12 +153,30 @@ Route::get('/storage-link', function() {
                 rename($link, $link . '_backup_' . time());
             }
         }
-        \Illuminate\Support\Facades\Artisan::call('storage:link');
-        return 'Storage link created successfully!';
+        
+        if (symlink($target, $link)) {
+            return 'Storage link created successfully using native symlink!';
+        }
+        
+        return 'Failed to create native symlink (but fallback is active).';
     } catch (\Throwable $e) {
-        return 'Error: ' . $e->getMessage() . '<br>File: ' . $e->getFile() . '<br>Line: ' . $e->getLine();
+        return 'Error: ' . $e->getMessage() . '<br>File: ' . $e->getFile() . '<br>Line: ' . $e->getLine() . '<br>You can safely ignore this error if the images are now loading, as the Laravel route fallback is active.';
     }
 });
+
+// Fallback storage route to serve images if Hostinger blocks symbolic links
+Route::get('/storage/{path}', function($path) {
+    $file = storage_path('app/public/' . $path);
+    if (!file_exists($file)) {
+        abort(404);
+    }
+    
+    $mimeType = mime_content_type($file);
+    return response()->file($file, [
+        'Content-Type' => $mimeType,
+        'Cache-Control' => 'public, max-age=31536000',
+    ]);
+})->where('path', '.*');
 
 Route::get('/clear-cache', function() {
     try {
