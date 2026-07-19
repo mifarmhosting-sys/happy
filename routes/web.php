@@ -153,8 +153,8 @@ Route::get('/storage-link', function() {
         }
         \Illuminate\Support\Facades\Artisan::call('storage:link');
         return 'Storage link created successfully!';
-    } catch (\Exception $e) {
-        return 'Error: ' . $e->getMessage();
+    } catch (\Throwable $e) {
+        return 'Error: ' . $e->getMessage() . '<br>File: ' . $e->getFile() . '<br>Line: ' . $e->getLine();
     }
 });
 
