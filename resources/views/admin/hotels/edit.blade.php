@@ -67,7 +67,7 @@
         <label for="image">Replace Featured Image</label>
         <input type="file" id="image" name="image" class="form-control">
         @if($hotel->image_path)
-          <img class="img-preview" src="{{ (file_exists(public_path($hotel->image_path)) && $hotel->image_path) ? asset($hotel->image_path) : asset('storage/' . $hotel->image_path) }}" alt="Preview">
+          <img class="img-preview" src="{{ $hotel->image_url }}" alt="Preview">
         @endif
         @error('image')<span style="color: var(--danger); font-size: 0.8rem;">{{ $message }}</span>@enderror
       </div>

@@ -45,7 +45,7 @@ class HomeController extends Controller
                     'location' => $hotel->location,
                     'stars' => $hotel->rating,
                     'text' => $hotel->description,
-                    'image' => (file_exists(public_path($hotel->image_path)) && $hotel->image_path) ? asset($hotel->image_path) : asset('storage/' . $hotel->image_path),
+                    'image' => $hotel->image_url,
                     'layout' => $hotel->id % 2 === 0 ? 'media-first' : 'text-first'
                 ];
             });

@@ -44,7 +44,7 @@
           @foreach($hotels as $hotel)
             <tr>
               <td>
-                <img src="{{ (file_exists(public_path($hotel->image_path)) && $hotel->image_path) ? asset($hotel->image_path) : asset('storage/' . $hotel->image_path) }}" alt="" style="width: 80px; height: 50px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border);">
+                <img src="{{ $hotel->image_url }}" alt="" style="width: 80px; height: 50px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border);">
               </td>
               <td><strong>{{ $hotel->name }}</strong></td>
               <td>{{ $hotel->location }}</td>

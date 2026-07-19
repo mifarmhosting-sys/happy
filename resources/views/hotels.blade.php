@@ -34,7 +34,7 @@
                 @if($loop->iteration == 2)
                   <!-- Image First -->
                   <div class="hotel-image">
-                    <img src="{{ (file_exists(public_path($h->image_path)) && $h->image_path) ? asset($h->image_path) : asset('storage/' . $h->image_path) }}" alt="">
+                    <img src="{{ $h->image_url }}" alt="">
                   </div>
                   <!-- Content Card -->
                   <div class="hotel-card">
@@ -67,7 +67,7 @@
                   </div>
                   <!-- Image -->
                   <div class="hotel-image">
-                    <img src="{{ (file_exists(public_path($h->image_path)) && $h->image_path) ? asset($h->image_path) : asset('storage/' . $h->image_path) }}" alt="">
+                    <img src="{{ $h->image_url }}" alt="">
                   </div>
                 @endif
               </div>
@@ -89,7 +89,7 @@
                 @if($loop->iteration == 2)
                   <!-- Center Column layout: Image First -->
                   <div class="hotel-image">
-                    <img src="{{ (file_exists(public_path($h->image_path)) && $h->image_path) ? asset($h->image_path) : asset('storage/' . $h->image_path) }}" alt="">
+                    <img src="{{ $h->image_url }}" alt="">
                   </div>
                   <div class="hotel-card">
                     <div class="hotel-content">
@@ -120,7 +120,7 @@
                     </div>
                   </div>
                   <div class="hotel-image">
-                    <img src="{{ (file_exists(public_path($h->image_path)) && $h->image_path) ? asset($h->image_path) : asset('storage/' . $h->image_path) }}" alt="">
+                    <img src="{{ $h->image_url }}" alt="">
                   </div>
                 @endif
               </div>
@@ -140,7 +140,7 @@
             <div class="hotel-row {{ $loop->iteration % 2 == 0 ? 'reverse' : '' }}">
               @if($loop->iteration % 2 == 0)
                 <div class="hotel-image">
-                  <img src="{{ (file_exists(public_path($h->image_path)) && $h->image_path) ? asset($h->image_path) : asset('storage/' . $h->image_path) }}" alt="">
+                  <img src="{{ $h->image_url }}" alt="">
                 </div>
                 <div class="hotel-content">
                   <h3>{{ $h->name }}</h3>
@@ -166,7 +166,7 @@
                   <a href="{{ $h->view_url }}" class="btn">VIEW HOTEL →</a>
                 </div>
                 <div class="hotel-image">
-                  <img src="{{ (file_exists(public_path($h->image_path)) && $h->image_path) ? asset($h->image_path) : asset('storage/' . $h->image_path) }}" alt="">
+                  <img src="{{ $h->image_url }}" alt="">
                 </div>
               @endif
             </div>
