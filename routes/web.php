@@ -143,6 +143,14 @@ Route::get('/run-migrations', function() {
 
 Route::get('/storage-link', function() {
     try {
+        $link = public_path('storage');
+        if (file_exists($link) || is_link($link)) {
+            if (is_link($link)) {
+                unlink($link);
+            } else {
+                rename($link, $link . '_backup_' . time());
+            }
+        }
         \Illuminate\Support\Facades\Artisan::call('storage:link');
         return 'Storage link created successfully!';
     } catch (\Exception $e) {
