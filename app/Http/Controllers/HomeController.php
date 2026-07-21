@@ -40,7 +40,7 @@ class HomeController extends Controller
         
         foreach ($categories as $cat) {
             $hotels = $cat->hotels()
-                ->whereNotIn('country', ['Indonesia', 'Thailand', 'Malaysia', 'Bali'])
+                ->whereNotIn('country', ['Indonesia', 'Thailand', 'Malaysia', 'Bali', 'Sri Lanka'])
                 ->orderBy('sort_order')->get()->map(function ($hotel) {
                     return [
                         'title' => $hotel->name,
@@ -65,7 +65,7 @@ class HomeController extends Controller
         $data = $this->getCommonData();
         
         // Hardcode the requested countries to guarantee they always appear as tabs (excluding hidden ones)
-        $countries = ['India', 'Sri Lanka', 'Nepal', 'Bhutan'];
+        $countries = ['India', 'Nepal', 'Bhutan'];
         
         $hotelsByCountry = collect();
         $allHotels = Hotel::orderBy('sort_order')->get();
