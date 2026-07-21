@@ -32,7 +32,7 @@
     <!-- Stats Section -->
     <div class="award-stats">
       @foreach($stats as $s)
-        <div class="stat">
+        <div class="stat" @if(strtolower(trim($s->label)) === 'awards won') style="display: none;" @endif>
           <h2>{{ $s->value }}</h2>
           <p>{{ $s->label }}</p>
         </div>
