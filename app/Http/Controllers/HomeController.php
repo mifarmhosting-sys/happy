@@ -39,16 +39,18 @@ class HomeController extends Controller
         $hotelTabData = [];
         
         foreach ($categories as $cat) {
-            $hotels = $cat->hotels()->orderBy('sort_order')->get()->map(function ($hotel) {
-                return [
-                    'title' => $hotel->name,
-                    'location' => $hotel->location,
-                    'stars' => $hotel->rating,
-                    'text' => $hotel->description,
-                    'image' => $hotel->image_url,
-                    'layout' => $hotel->id % 2 === 0 ? 'media-first' : 'text-first'
-                ];
-            });
+            $hotels = $cat->hotels()
+                ->whereNotIn('country', ['Indonesia', 'Thailand', 'Malaysia', 'Bali'])
+                ->orderBy('sort_order')->get()->map(function ($hotel) {
+                    return [
+                        'title' => $hotel->name,
+                        'location' => $hotel->location,
+                        'stars' => $hotel->rating,
+                        'text' => $hotel->description,
+                        'image' => $hotel->image_url,
+                        'layout' => $hotel->id % 2 === 0 ? 'media-first' : 'text-first'
+                    ];
+                });
             $hotelTabData[$cat->slug] = $hotels;
         }
         
@@ -62,8 +64,8 @@ class HomeController extends Controller
     {
         $data = $this->getCommonData();
         
-        // Hardcode the requested countries to guarantee they always appear as tabs
-        $countries = ['India', 'Bali', 'Sri Lanka', 'Malaysia', 'Nepal', 'Thailand', 'Indonesia', 'Bhutan'];
+        // Hardcode the requested countries to guarantee they always appear as tabs (excluding hidden ones)
+        $countries = ['India', 'Sri Lanka', 'Nepal', 'Bhutan'];
         
         $hotelsByCountry = collect();
         $allHotels = Hotel::orderBy('sort_order')->get();
