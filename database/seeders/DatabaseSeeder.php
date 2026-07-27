@@ -426,10 +426,10 @@ class DatabaseSeeder extends Seeder
 
         // 12. Seed Stats
         $stats = [
-            ['value' => '50K+', 'label' => 'Happy Travelers', 'sort_order' => 1],
-            ['value' => '25+', 'label' => 'Global Destinations', 'sort_order' => 2],
+            ['value' => '5K+', 'label' => 'Happy Travelers', 'sort_order' => 1],
+            ['value' => '42+', 'label' => 'Global Destinations', 'sort_order' => 2],
             ['value' => '10+', 'label' => 'Awards Won', 'sort_order' => 3],
-            ['value' => '5★', 'label' => 'Average Rating', 'sort_order' => 4],
+            ['value' => '4.7★', 'label' => 'Average Rating', 'sort_order' => 4],
         ];
         foreach ($stats as $s) {
             if (!Stat::where('label', $s['label'])->exists()) {
