@@ -71,7 +71,7 @@
       <div class="site-footer__brand">
         <img src="{{ asset('images/Premium.png') }}" alt="" class="site-footer__logo" width="160" height="36">
         <p class="site-footer__blurb">{{ $settings->contact_address }}</p>
-        <p class="site-footer__blurb" style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">{{ $settings->footer_blurb }}</p>
+        <p class="site-footer__blurb" style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">{!! nl2br(e($settings->footer_blurb)) !!}</p>
       </div>
       <nav class="site-footer__nav" aria-label="Footer">
         <h3 class="site-footer__heading">Explore</h3>

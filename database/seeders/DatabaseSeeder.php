@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
                 'youtube_url' => '#',
                 'logo_path' => 'images/Premium.png',
                 'footer_logo_path' => 'images/Premium.png',
-                'footer_blurb' => 'Division of The Happy Miles Tourism. Luxury resorts across the Caribbean, the Canary Islands, and Spain.',
+                'footer_blurb' => "Explore More • Travel Better • Create Memories\nHappy Miles Dream Hospitality – Making every journey comfortable, memorable, and truly special",
             ]);
         }
 
