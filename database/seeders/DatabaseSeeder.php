@@ -34,10 +34,10 @@ class DatabaseSeeder extends Seeder
         if (SiteSetting::count() === 0) {
             SiteSetting::create([
                 'site_name' => 'Happy Miles',
-                'contact_email' => 'info@yourdomain.com',
-                'contact_phone' => '+91 98765 43210',
+                'contact_email' => 'info@happymilesdreamhospitality.com',
+                'contact_phone' => '+91 8910364270',
                 'contact_address' => 'AVS House, 42/1A Gurupada Halder Road. Kolkata - 700026',
-                'working_hours' => 'Mon - Sat: 10:00 AM - 7:00 PM',
+                'working_hours' => 'Mon - Sat: 11:00 AM - 7:00 PM',
                 'facebook_url' => '#',
                 'instagram_url' => '#',
                 'youtube_url' => '#',
