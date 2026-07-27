@@ -17,8 +17,8 @@
   <header class="site-header" id="siteHeader">
     <div class="top-bar">
       <div class="container top-bar__inner">
-        <p class="top-bar__contact" style="display: none;">
-          <span class="top-bar__label">Happy Miles Club</span>
+        <p class="top-bar__contact">
+          <span class="top-bar__label">Happy Miles</span>
         </p>
         <div class="top-bar__actions">
           @if(auth('member')->check())
