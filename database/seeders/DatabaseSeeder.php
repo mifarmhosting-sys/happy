@@ -298,7 +298,7 @@ class DatabaseSeeder extends Seeder
                 'quote' => '“I have gone a trip with my family to puri, odisha. We all know puri for its holy and religious temples, and its lord, Jaganaath. Puri is also known for its sea beach, but to make my trip enjoyable, I must congratulate The Happy Miles organization for it. It providedus with a luxirious hotel, Camellia. It was a very wonderful journey with The Happy Miles organization around us. Whenever we had a problem, they immediately fixed the issue and apologised for the inconvience. I would definitely go with the Happy Miles organization whenever i have a trip planned for its safe, secure and luxirious hotel bookings and fast reply to inconveniences.....🙏🙏”',
                 'author' => 'Krishnendu Roy Chowdhury',
                 'role' => 'Member',
-                'avatar_path' => 'Images/testimonials/testimonial-001.webp',
+                'avatar_path' => 'images/testimonials/testimonial-001.webp',
                 'type' => 'home',
                 'sort_order' => 4
             ],
