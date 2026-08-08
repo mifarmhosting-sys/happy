@@ -222,6 +222,14 @@
       var index = 0;
       var slideCount = slides.length;
 
+      if (track && slideCount > 0) {
+        track.style.width = (slideCount * 100) + '%';
+        slides.forEach(function(s) {
+          s.style.width = (100 / slideCount) + '%';
+          s.style.flex = '0 0 ' + (100 / slideCount) + '%';
+        });
+      }
+
       function setDotActive(i) {
         if (!dotsWrap) return;
         var dots = dotsWrap.querySelectorAll('.testimonials__dot');

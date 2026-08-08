@@ -32,7 +32,7 @@ class HomeController extends Controller
         $data['hero'] = HeroSection::first() ?? new HeroSection();
         $data['welcome'] = WelcomeSection::first() ?? new WelcomeSection();
         $data['destinations'] = Destination::orderBy('sort_order')->orderBy('name')->get();
-        $data['testimonials'] = Testimonial::where('type', 'home')->orderBy('sort_order')->get();
+        $data['testimonials'] = Testimonial::where('type', 'home')->orderBy('id', 'desc')->get();
         
         // Prepare Hotel Tab Data for the interactive tab menu
         $categories = HotelCategory::all();
@@ -112,7 +112,7 @@ class HomeController extends Controller
     {
         $data = $this->getCommonData();
         $data['about'] = AboutSection::first() ?? new AboutSection();
-        $data['testimonials'] = Testimonial::where('type', 'about')->orderBy('sort_order')->get();
+        $data['testimonials'] = Testimonial::where('type', 'about')->orderBy('id', 'desc')->get();
         return view('about', $data);
     }
 
