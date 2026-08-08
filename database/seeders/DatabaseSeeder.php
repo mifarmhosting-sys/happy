@@ -310,6 +310,14 @@ class DatabaseSeeder extends Seeder
                 'type' => 'home',
                 'sort_order' => 5
             ],
+            [
+                'quote' => '“My wife and I are proud members of Happy Miles. We recently travelled to Guwahati for Maa Kamakhya Darshan, and the entire trip was wonderfully organized by the company. The hotel arranged for us by Happy Miles was excellent. We really loved the hotel, and the food was absolutely delicious. Everything was well planned and managed throughout our journey, which made our trip comfortable and memorable. A big thank you to Happy Miles for arranging such an amazing tour and giving us such a wonderful travel experience. We truly appreciate your hospitality and excellent service! ❤️🙏”',
+                'author' => 'Pradyut Kr. Ghoshal',
+                'role' => 'Member',
+                'avatar_path' => 'images/testimonials/testimonial-003.webp',
+                'type' => 'home',
+                'sort_order' => 6
+            ],
             // About Slide Testimonials
             [
                 'quote' => 'Our favourite hotel is the Ocean El Faro...',
