@@ -318,6 +318,22 @@ class DatabaseSeeder extends Seeder
                 'type' => 'home',
                 'sort_order' => 6
             ],
+            [
+                'quote' => '“Me & my wife, Srishty Dubey, and I are proud members of Happy Miles. Recently, we visited Barbeque Nation for a wonderful dine-in experience, and all the arrangements were made by Happy Miles. We enjoyed a lovely dinner with our family and had a great time. The overall experience was excellent, and everything was well arranged and managed. A big thank you to Happy Miles for the amazing arrangements and for making our family dinner so enjoyable and memorable. ❤️ Highly recommended for their excellent service and hospitality!”',
+                'author' => 'Nitesh Tiwari & Srishty Dubey',
+                'role' => 'Member',
+                'avatar_path' => 'images/testimonials/testimonial-004.webp',
+                'type' => 'home',
+                'sort_order' => 7
+            ],
+            [
+                'quote' => '“We are members of Happy Miles and recently enjoyed a wonderful day out at Rupasi Rupnarayan Kuthi, Kolaghat, with all the arrangements made by Happy Miles. We were provided with a beautiful river-view room, and the view from the window was truly amazing, with a breathtaking view of the entire river. The lunch was absolutely delicious, and we also enjoyed evening tea and snacks while taking in the beautiful surroundings. The peaceful atmosphere and scenic views made the experience even more special. My wife and I had a wonderful time and truly enjoyed every moment of our stay. Thank you, Happy Miles, for making such amazing arrangements and giving us such a memorable experience! ❤️”',
+                'author' => 'Subhashis Roy Chowdhury & Madhumita Roy Chowdhury',
+                'role' => 'Member',
+                'avatar_path' => 'images/testimonials/testimonial-005.webp',
+                'type' => 'home',
+                'sort_order' => 8
+            ],
             // About Slide Testimonials
             [
                 'quote' => 'Our favourite hotel is the Ocean El Faro...',
