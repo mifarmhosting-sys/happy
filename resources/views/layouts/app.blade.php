@@ -18,7 +18,7 @@
     <div class="top-bar">
       <div class="container top-bar__inner">
         <p class="top-bar__contact">
-          <span class="top-bar__label">Happy Miles</span>
+          <span class="top-bar__label">Happy Miles Dream Hospitality</span>
         </p>
         <div class="top-bar__actions">
           @if(auth('member')->check())
@@ -145,7 +145,7 @@
               entry.target.classList.add('section--visible');
             }
           });
-        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
         revealSections.forEach(function (el) { io.observe(el); });
       } else {
         revealSections.forEach(function (el) { el.classList.add('section--visible'); });

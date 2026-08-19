@@ -82,6 +82,7 @@
           <div class="hotel-tabs__bar-scroll">
             <div class="hotel-tabs__bar" role="tablist" aria-label="Hotel categories">
               @foreach($categories as $cat)
+                @if(count($hotelTabData[$cat->slug] ?? []) > 0)
               <button
                 type="button"
                 class="hotel-tabs__tab {{ $loop->first ? 'hotel-tabs__tab--active' : '' }}"
@@ -107,6 +108,7 @@
                 </span>
                 <span class="hotel-tabs__label">{{ $cat->name }}</span>
               </button>
+                @endif
               @endforeach
             </div>
           </div>
