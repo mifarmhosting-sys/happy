@@ -299,3 +299,24 @@ Route::get('/test-db', function() {
     }
 });
 
+Route::get('/update-db-live', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'HotelsTableSeeder', '--force' => true]);
+        $seedOutput = \Illuminate\Support\Facades\Artisan::output();
+
+        \Illuminate\Support\Facades\Artisan::call('optimize:clear');
+        $optimizeOutput = \Illuminate\Support\Facades\Artisan::output();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Database seeded and cache cleared successfully!',
+            'seed_output' => $seedOutput,
+            'optimize_output' => $optimizeOutput
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $e->getMessage()
+        ], 500);
+    }
+});
