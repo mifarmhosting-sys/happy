@@ -18,6 +18,7 @@ Route::get('/awards.html', [HomeController::class, 'awards'])->name('awards');
 Route::get('/about.html', [HomeController::class, 'about'])->name('about');
 Route::get('/blog', [HomeController::class, 'blogIndex'])->name('blog.index');
 Route::get('/blog/{slug}', [HomeController::class, 'blogShow'])->name('blog.show');
+Route::post('/blog/{slug}/comment', [HomeController::class, 'blogCommentStore'])->name('blog.comment.store');
 Route::get('/contact-us.html', [HomeController::class, 'contact'])->name('contact');
 Route::post('/contact-us.html', [HomeController::class, 'contactSubmit'])->name('contact.submit');
 
@@ -89,6 +90,11 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
     // Blog Posts CRUD
     Route::resource('blogs', AdminBlogController::class, ['names' => 'admin.blogs']);
+    
+    // Blog Comments Management
+    Route::get('/comments', [AdminBlogController::class, 'commentsIndex'])->name('admin.blogs.comments.index');
+    Route::post('/comments/{id}/approve', [AdminBlogController::class, 'commentApprove'])->name('admin.blogs.comments.approve');
+    Route::delete('/comments/{id}', [AdminBlogController::class, 'commentDestroy'])->name('admin.blogs.comments.destroy');
 });
 
 // Member Routing Groups

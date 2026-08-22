@@ -52,4 +52,12 @@ class BlogPost extends Model
 
         return $slug;
     }
+
+    /**
+     * Get the comments for the blog post.
+     */
+    public function comments()
+    {
+        return $this->hasMany(BlogComment::class, 'blog_post_id')->orderBy('created_at', 'desc');
+    }
 }

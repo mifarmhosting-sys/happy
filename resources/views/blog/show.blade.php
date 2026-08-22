@@ -53,6 +53,55 @@
       {!! nl2br(e($blog->content)) !!}
     </div>
 
+    <div style="margin-top: 60px; border-top: 1px solid #f1f5f9; padding-top: 40px;">
+      <h3 style="font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #1a1a1a; margin-bottom: 30px;">Comments ({{ $blog->comments->count() }})</h3>
+      
+      @if(session('success'))
+        <div style="background-color: #dcfce3; color: #166534; padding: 15px; border-radius: 4px; margin-bottom: 30px; font-family: 'Inter', sans-serif;">
+          {{ session('success') }}
+        </div>
+      @endif
+
+      <!-- Display Comments -->
+      <div style="margin-bottom: 50px;">
+        @forelse($blog->comments as $comment)
+          <div style="margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid #f1f5f9;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+              <strong style="font-family: 'Inter', sans-serif; color: #1e293b;">{{ $comment->name }}</strong>
+              <span style="font-size: 0.85rem; color: #64748b;">{{ $comment->created_at->diffForHumans() }}</span>
+            </div>
+            <p style="font-family: 'Inter', sans-serif; color: #475569; margin: 0; line-height: 1.6;">{{ $comment->comment }}</p>
+          </div>
+        @empty
+          <p style="font-family: 'Inter', sans-serif; color: #64748b; font-style: italic;">No comments yet. Be the first to share your thoughts!</p>
+        @endforelse
+      </div>
+
+      <!-- Comment Form -->
+      <h4 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #1a1a1a; margin-bottom: 20px;">Leave a Reply</h4>
+      <form action="{{ route('blog.comment.store', $blog->slug) }}" method="POST" style="font-family: 'Inter', sans-serif;">
+        @csrf
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+          <div>
+            <label for="name" style="display: block; font-size: 0.9rem; font-weight: 500; color: #334155; margin-bottom: 8px;">Name <span style="color: #e11d48;">*</span></label>
+            <input type="text" name="name" id="name" required style="width: 100%; padding: 12px 15px; border: 1px solid #cbd5e1; border-radius: 4px; font-family: inherit; font-size: 0.95rem; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#1e3a8a'" onblur="this.style.borderColor='#cbd5e1'">
+            @error('name')<span style="color: #e11d48; font-size: 0.85rem;">{{ $message }}</span>@enderror
+          </div>
+          <div>
+            <label for="email" style="display: block; font-size: 0.9rem; font-weight: 500; color: #334155; margin-bottom: 8px;">Email <span style="color: #e11d48;">*</span> <span style="font-weight: 400; color: #94a3b8;">(will not be published)</span></label>
+            <input type="email" name="email" id="email" required style="width: 100%; padding: 12px 15px; border: 1px solid #cbd5e1; border-radius: 4px; font-family: inherit; font-size: 0.95rem; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#1e3a8a'" onblur="this.style.borderColor='#cbd5e1'">
+            @error('email')<span style="color: #e11d48; font-size: 0.85rem;">{{ $message }}</span>@enderror
+          </div>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <label for="comment" style="display: block; font-size: 0.9rem; font-weight: 500; color: #334155; margin-bottom: 8px;">Comment <span style="color: #e11d48;">*</span></label>
+          <textarea name="comment" id="comment" rows="5" required style="width: 100%; padding: 12px 15px; border: 1px solid #cbd5e1; border-radius: 4px; font-family: inherit; font-size: 0.95rem; resize: vertical; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#1e3a8a'" onblur="this.style.borderColor='#cbd5e1'"></textarea>
+          @error('comment')<span style="color: #e11d48; font-size: 0.85rem;">{{ $message }}</span>@enderror
+        </div>
+        <button type="submit" style="background-color: #1e3a8a; color: white; border: none; padding: 12px 25px; border-radius: 4px; font-family: inherit; font-weight: 500; font-size: 0.95rem; cursor: pointer; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#172554'" onmouseout="this.style.backgroundColor='#1e3a8a'">Post Comment</button>
+      </form>
+    </div>
+
     <div style="margin-top: 60px; border-top: 1px solid #f1f5f9; padding-top: 30px;">
       <a href="{{ route('blog.index') }}" style="font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; color: #1e3a8a; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
         <i class="fas fa-arrow-left"></i> Back to all articles

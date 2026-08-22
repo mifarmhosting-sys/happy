@@ -151,7 +151,29 @@ class HomeController extends Controller
     public function blogShow($slug)
     {
         $data = $this->getCommonData();
-        $data['blog'] = BlogPost::where('slug', $slug)->firstOrFail();
+        $data['blog'] = BlogPost::with(['comments' => function($q) {
+            $q->where('is_approved', true);
+        }])->where('slug', $slug)->firstOrFail();
         return view('blog.show', $data);
+    }
+
+    public function blogCommentStore(Request $request, $slug)
+    {
+        $blog = BlogPost::where('slug', $slug)->firstOrFail();
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'comment' => 'required|string',
+        ]);
+
+        $blog->comments()->create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'comment' => $request->comment,
+            'is_approved' => false,
+        ]);
+
+        return redirect()->route('blog.show', $slug)->with('success', 'Thank you! Your comment has been submitted and is awaiting approval.');
     }
 }

@@ -289,7 +289,7 @@ class DatabaseSeeder extends Seeder
             [
                 'quote' => '“Very trustworthy and highly recommended. My Kashmir tour was well managed and properly coordinated. Mrs. Reshmi Biswas kept all her promises.”',
                 'author' => 'Ashish Mishra',
-                'role' => 'Member since 2020',
+                'role' => 'Member since 2021',
                 'avatar_path' => 'images/testimonial-03.jpg',
                 'type' => 'home',
                 'sort_order' => 3

@@ -118,4 +118,28 @@ class AdminBlogController extends Controller
 
         return redirect()->route('admin.blogs.index')->with('success', 'Blog post deleted successfully.');
     }
+
+    public function commentsIndex()
+    {
+        $comments = \App\Models\BlogComment::with('post')->orderBy('created_at', 'desc')->get();
+        $settings = SiteSetting::first() ?? new SiteSetting();
+        return view('admin.blogs.comments', compact('comments', 'settings'));
+    }
+
+    public function commentApprove(Request $request, $id)
+    {
+        $comment = \App\Models\BlogComment::findOrFail($id);
+        $comment->is_approved = true;
+        $comment->save();
+
+        return redirect()->back()->with('success', 'Comment approved successfully.');
+    }
+
+    public function commentDestroy($id)
+    {
+        $comment = \App\Models\BlogComment::findOrFail($id);
+        $comment->delete();
+
+        return redirect()->back()->with('success', 'Comment deleted successfully.');
+    }
 }
