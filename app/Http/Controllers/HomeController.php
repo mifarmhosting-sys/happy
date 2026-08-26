@@ -176,4 +176,29 @@ class HomeController extends Controller
 
         return redirect()->route('blog.show', $slug)->with('success', 'Thank you! Your comment has been submitted and is awaiting approval.');
     }
+
+    public function membership()
+    {
+        $data = $this->getCommonData();
+        return view('membership', $data);
+    }
+
+    public function membershipEnquire(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'email' => 'required|email|max:255',
+            'address' => 'required|string',
+        ]);
+
+        \App\Models\MembershipEnquiry::create([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'address' => $request->address,
+        ]);
+
+        return redirect()->back()->with('success', 'Thank you! Your membership enquiry has been submitted. We will contact you soon.');
+    }
 }

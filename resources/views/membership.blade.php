@@ -1,0 +1,215 @@
+@extends('layouts.app')
+
+@section('title', 'Membership')
+@section('meta_description', 'Happy Miles Membership - Enjoy premium luxury hospitality')
+
+@section('styles')
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            corePlugins: {
+                preflight: false,
+            },
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "primary": "#000613",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "on-surface-variant": "#43474e",
+                        "surface-bright": "#faf9fc",
+                        "on-tertiary-fixed-variant": "#474744",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "deep-navy": "#001F3F",
+                        "on-primary-fixed": "#001c3a",
+                        "surface-container-high": "#e9e7eb",
+                        "accent-gold": "#C5A059",
+                        "surface": "#faf9fc",
+                        "on-error-container": "#93000a",
+                        "on-background": "#1a1c1e",
+                        "tertiary-fixed": "#e4e2de",
+                        "tertiary-fixed-dim": "#c8c6c3",
+                        "on-tertiary-container": "#878683",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#d4e3ff",
+                        "secondary": "#775a19",
+                        "primary-fixed-dim": "#afc8f0",
+                        "slate-gray": "#4A5568",
+                        "inverse-primary": "#afc8f0",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#785a1a",
+                        "on-surface": "#1a1c1e",
+                        "tertiary": "#050605",
+                        "on-primary-container": "#6f88ad",
+                        "inverse-on-surface": "#f2f0f3",
+                        "on-secondary-fixed": "#261900",
+                        "cream-base": "#FDFBF7",
+                        "surface-container": "#efedf0",
+                        "primary-container": "#001f3f",
+                        "outline-variant": "#c4c6cf",
+                        "outline": "#74777f",
+                        "surface-container-low": "#f4f3f6",
+                        "surface-tint": "#476083",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#1b1c1a",
+                        "surface-variant": "#e3e2e5",
+                        "on-primary": "#ffffff",
+                        "background": "#faf9fc",
+                        "secondary-fixed-dim": "#e9c176",
+                        "inverse-surface": "#2f3033",
+                        "surface-dim": "#dbd9dd",
+                        "secondary-fixed": "#ffdea5",
+                        "surface-container-highest": "#e3e2e5",
+                        "on-primary-fixed-variant": "#2f486a",
+                        "secondary-container": "#fed488",
+                        "tertiary-container": "#1e1f1d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "margin-desktop": "64px",
+                        "section-gap": "120px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-sm": ["Playfair Display"],
+                        "label-caps": ["Inter"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+@endsection
+
+@section('content')
+<div class="membership-wrapper bg-cream-base font-body-md text-on-surface">
+    <main class="w-full bg-cream-base">
+        <div class="flex flex-col w-full items-center justify-center py-section-gap px-margin-mobile lg:px-margin-desktop bg-cream-base relative overflow-hidden" style="min-height: calc(100vh - 80px);">
+            <!-- Decorative background elements -->
+            <div class="absolute top-0 left-0 w-full h-full pointer-events-none opacity-30">
+                <div class="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-surface-variant blur-3xl mix-blend-multiply"></div>
+                <div class="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-accent-gold/10 blur-3xl mix-blend-multiply"></div>
+            </div>
+            
+            <div class="w-full max-w-container-max mx-auto relative z-10">
+                
+                @if(session('success'))
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-6" role="alert">
+                        <span class="block sm:inline">{{ session('success') }}</span>
+                    </div>
+                @endif
+
+                @if($errors->any())
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6" role="alert">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <div class="text-center mb-16 space-y-4">
+                    <span class="font-label-caps text-accent-gold tracking-[0.2em] uppercase">Join the Elite</span>
+                    <h1 class="font-display-lg text-primary">Membership Enquiry</h1>
+                    <p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto">Experience unparalleled luxury and personalized service with our exclusive membership tiers, designed for those who appreciate the extraordinary.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter lg:gap-16 items-start">
+                    
+                    <!-- Left Column: Membership Details Card -->
+                    <div class="bg-surface rounded-xl shadow-xl border border-primary/5 p-8 lg:p-12 relative overflow-hidden group hover:shadow-2xl transition-shadow duration-500">
+                        <!-- Subtle texture overlay -->
+                        <div class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZmIiAvPgo8cGF0aCBkPSJNMCAwTDggOFpNOCAwTDAgOFoiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIwLjUiIC8+Cjwvc3ZnPg==')]"></div>
+                        <div class="relative z-10 flex flex-col items-center text-center space-y-10">
+                            <h2 class="font-headline-md text-primary pb-6 relative inline-block">
+                                Membership
+                                <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-[1px] bg-accent-gold"></span>
+                            </h2>
+                            <div class="space-y-4 w-full">
+                                <span class="font-label-caps text-on-surface-variant tracking-[0.15em] uppercase block">Normal Membership Price</span>
+                                <div class="font-display-lg text-accent-gold flex items-baseline justify-center gap-1">
+                                    <span class="text-3xl font-headline-md opacity-80">₹</span>
+                                    <span class="text-[64px] font-bold leading-none">12,49,999</span>
+                                    <span class="text-3xl font-headline-md opacity-80">/-</span>
+                                </div>
+                            </div>
+                            <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-primary/10 to-transparent my-6"></div>
+                            <div class="space-y-3 w-full">
+                                <span class="font-label-caps text-on-surface-variant tracking-[0.15em] uppercase block">Annual Utility Charge</span>
+                                <div class="font-headline-sm text-primary flex items-baseline justify-center gap-1">
+                                    <span class="text-2xl opacity-80">₹</span>
+                                    <span class="text-[40px] font-bold leading-none">14,999</span>
+                                    <span class="text-2xl opacity-80">/-</span>
+                                </div>
+                            </div>
+                            <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-primary/10 to-transparent my-6"></div>
+                            <div class="space-y-3 w-full pb-4">
+                                <span class="font-label-caps text-on-surface-variant tracking-[0.15em] uppercase block">No of Heads</span>
+                                <p class="font-body-lg text-primary">
+                                    2 Adults + 2 Kids <span class="text-sm text-on-surface-variant">(below 8 years)</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column: Enquiry Form -->
+                    <div class="bg-surface rounded-xl shadow-lg border border-primary/5 p-8 lg:p-12 relative">
+                        <form action="{{ route('membership.enquire') }}" class="space-y-8" method="POST">
+                            @csrf
+                            <div class="space-y-2 group">
+                                <label class="font-label-caps text-primary tracking-widest block transition-colors group-focus-within:text-accent-gold" for="name">Name</label>
+                                <input class="w-full bg-cream-base border border-primary/20 rounded p-[15px] text-primary font-body-md focus:outline-none focus:border-accent-gold transition-colors placeholder:text-on-surface-variant/40" id="name" name="name" placeholder="Name" required="" type="text">
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="space-y-2 group">
+                                    <label class="font-label-caps text-primary tracking-widest block transition-colors group-focus-within:text-accent-gold" for="phone">Ph No</label>
+                                    <input class="w-full bg-cream-base border border-primary/20 rounded p-[15px] text-primary font-body-md focus:outline-none focus:border-accent-gold transition-colors placeholder:text-on-surface-variant/40" id="phone" name="phone" placeholder="+91 9836569784" required="" type="tel">
+                                </div>
+                                <div class="space-y-2 group">
+                                    <label class="font-label-caps text-primary tracking-widest block transition-colors group-focus-within:text-accent-gold" for="email">Email ID</label>
+                                    <input class="w-full bg-cream-base border border-primary/20 rounded p-[15px] text-primary font-body-md focus:outline-none focus:border-accent-gold transition-colors placeholder:text-on-surface-variant/40" id="email" name="email" placeholder="Email" required="" type="email">
+                                </div>
+                            </div>
+                            <div class="space-y-2 group">
+                                <label class="font-label-caps text-primary tracking-widest block transition-colors group-focus-within:text-accent-gold" for="address">Permanent Address</label>
+                                <textarea class="w-full bg-cream-base border border-primary/20 rounded p-[15px] text-primary font-body-md focus:outline-none focus:border-accent-gold transition-colors resize-none placeholder:text-on-surface-variant/40" id="address" name="address" placeholder="Enter your full address" required="" rows="3"></textarea>
+                            </div>
+                            <button class="w-full bg-primary text-on-primary font-label-caps py-4 rounded hover:bg-accent-gold hover:text-primary transition-all duration-300 flex items-center justify-center gap-2 group mt-8" type="submit">
+                                <span class="">Submit Enquiry</span>
+                                <span class="material-symbols-outlined transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+@endsection

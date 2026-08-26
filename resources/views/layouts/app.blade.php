@@ -54,6 +54,7 @@
             <li><a href="{{ route('destinations') }}" class="main-nav__link {{ Request::routeIs('destinations') ? 'main-nav__link--active' : '' }}">Destination</a></li>
             <li><a href="{{ route('awards') }}" class="main-nav__link {{ Request::routeIs('awards') ? 'main-nav__link--active' : '' }}">Awards</a></li>
             <li><a href="{{ route('blog.index') }}" class="main-nav__link {{ Request::routeIs('blog.*') ? 'main-nav__link--active' : '' }}">Blog</a></li>
+            <li><a href="{{ route('membership') }}" class="main-nav__link {{ Request::routeIs('membership') ? 'main-nav__link--active' : '' }}">Membership</a></li>
             <li><a href="{{ route('contact') }}" class="main-nav__link {{ Request::routeIs('contact') ? 'main-nav__link--active' : '' }}">Connect Us</a></li>
           </ul>
         </nav>

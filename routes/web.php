@@ -21,6 +21,8 @@ Route::get('/blog/{slug}', [HomeController::class, 'blogShow'])->name('blog.show
 Route::post('/blog/{slug}/comment', [HomeController::class, 'blogCommentStore'])->name('blog.comment.store');
 Route::get('/contact-us.html', [HomeController::class, 'contact'])->name('contact');
 Route::post('/contact-us.html', [HomeController::class, 'contactSubmit'])->name('contact.submit');
+Route::get('/membership', [HomeController::class, 'membership'])->name('membership');
+Route::post('/membership/enquire', [HomeController::class, 'membershipEnquire'])->name('membership.enquire');
 
 // Legacy routing compatibility support
 Route::get('/home.html', [HomeController::class, 'home']);
@@ -95,6 +97,10 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/comments', [AdminBlogController::class, 'commentsIndex'])->name('admin.blogs.comments.index');
     Route::post('/comments/{id}/approve', [AdminBlogController::class, 'commentApprove'])->name('admin.blogs.comments.approve');
     Route::delete('/comments/{id}', [AdminBlogController::class, 'commentDestroy'])->name('admin.blogs.comments.destroy');
+
+    // Membership Enquiries
+    Route::get('/membership-enquiries', [\App\Http\Controllers\AdminMembershipController::class, 'index'])->name('admin.membership_enquiries.index');
+    Route::delete('/membership-enquiries/{id}', [\App\Http\Controllers\AdminMembershipController::class, 'destroy'])->name('admin.membership_enquiries.destroy');
 });
 
 // Member Routing Groups

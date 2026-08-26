@@ -461,6 +461,9 @@
       <a href="{{ route('admin.blogs.comments.index') }}" class="sidebar-link {{ Request::routeIs('admin.blogs.comments.*') ? 'active' : '' }}">
         <i class="fas fa-comments"></i> Blog Comments
       </a>
+      <a href="{{ route('admin.membership_enquiries.index') }}" class="sidebar-link {{ Request::routeIs('admin.membership_enquiries.*') ? 'active' : '' }}">
+        <i class="fas fa-id-card"></i> Membership Enquiries
+      </a>
       <a href="{{ route('home') }}" target="_blank" class="sidebar-link">
         <i class="fas fa-external-link-alt"></i> Visit Site
       </a>

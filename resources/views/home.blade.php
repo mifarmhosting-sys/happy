@@ -112,13 +112,6 @@
               @endforeach
             </div>
           </div>
-
-          <div class="hotel-tabs__destination">
-            <button type="button" class="hotel-tabs__select" id="destinationBtn" aria-haspopup="listbox" aria-expanded="false">
-              All Destination
-              <span class="hotel-tabs__chevron" aria-hidden="true"></span>
-            </button>
-          </div>
         </div>
       </div>
 
